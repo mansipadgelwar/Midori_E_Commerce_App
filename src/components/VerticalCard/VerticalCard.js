@@ -2,21 +2,21 @@ import "./App.css";
 
 const VerticalCard = () => {
     return(
-    <article class="vertical-card"> 
-        <span class="material-icons-outlined icon">
+    <article className="vertical-card"> 
+        <span className="material-icons-outlined icon">
            favorite
         </span>       
-        <div class="img-container"> 
-            <img src="/images/Plant1.jpg" alt="plant" class="img-responsive"/>
+        <div className="img-container"> 
+            <img src="/images/Plant1.jpg" alt="plant" className="img-responsive"/>
         </div>
-        <div class="product-description">
-           <h3 class="product-main-heading"> Monstera Deliciosa Plant </h3>
-           <p class="product-sub-heading">
-            Rs. 1945 <span class="product-discount">(5% OFF)</span>
+        <div className="product-description">
+           <h3 className="product-main-heading"> Monstera Deliciosa Plant </h3>
+           <p className="product-sub-heading">
+            Rs. 1945 <span className="product-discount">(5% OFF)</span>
            </p>
         </div>
-        <div class="button-container">                   
-            <button class="btn btn-cta">Add To Bag</button>
+        <div className="button-container">                   
+            <button className="btn btn-cta">Add To Bag</button>
         </div>
         </article>
    );
