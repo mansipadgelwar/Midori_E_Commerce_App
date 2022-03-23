@@ -1,0 +1,53 @@
+.sidebar-heading{
+    font-weight: bold;
+    padding: 2.5rem 0;
+}
+
+.sidebar_menu{
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-left: 1rem; 
+}
+
+.side_bar{    
+    max-width: 18rem;
+    width: 100%; 
+    position: sticky;
+    overflow-y: auto;
+    top: 0;
+    background-color: var(--white);
+    text-align: left;
+    height: calc(100vh - 2rem);    
+}
+
+.sidebar_list{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    list-style-type: none;  
+}
+
+.filter-heading{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.filter-heading  .btn{
+    padding: 0;
+    margin: 0;
+    text-decoration: underline;
+}
+
+.checkbox-container{
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;  
+    justify-content: normal; 
+}
+
+.checkbox{
+    margin-right: 0.5rem;
+}
