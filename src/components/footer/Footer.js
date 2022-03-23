@@ -1,6 +1,6 @@
-import './footer.css';
+import "./Footer.css";
 
-export default function Footer(){
+const Footer = () => {
     return(
     <footer className="footer">
      <div className="social-handles">
@@ -34,5 +34,7 @@ export default function Footer(){
       <p className="email-details h4"> midori@gmail.com</p>        
      </div>
     </footer>
-    )
-}
+    );
+};
+
+export {Footer};
