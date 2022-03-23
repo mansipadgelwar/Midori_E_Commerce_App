@@ -1,11 +1,11 @@
 import "App.css";
-import "./CartCard";
+import "./CartCard.css";
 
 const CartCard = () => {
     return(
     <article className="sub-section-container">        
         <div className="sub-section-image">
-            <img src="/images/Plant1.jpg" alt="" className="img-responsive ss-image"/>
+            <img src="/images/Plant1.jpg" alt="product-image" className="img-responsive ss-image"/>
         </div>
         <div className="mycart-description">
             <h3>Fittonia Green Plant</h3>
