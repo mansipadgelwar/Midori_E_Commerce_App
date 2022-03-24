@@ -1,28 +1,41 @@
 import "./Header.css";
+import { Link } from "react-router-dom";
 
 const Header = () => {
-    return(
+  return (
     <header className="header">
       <div className="header-items">
         <div className="nav-brand">
-          <a className="btn-link" href="/index.html">Midori</a>
+          <Link className="btn-link" to="/">
+            Midori
+          </Link>
         </div>
-          <div className="input-icon icons-left">
-            <span className="material-icons">search</span> 
-            <input className="input" type="text" id="search-bar" name="search-bar" placeholder="search"/> 
+        <div className="input-icon icons-left">
+          <span className="material-icons">search</span>
+          <input
+            className="input"
+            type="text"
+            id="search-bar"
+            name="search-bar"
+            placeholder="search"
+          />
+        </div>
+        <div className="sub-menu">
+          <button className="btn btn-cta">Login</button>
+          <div className="header-icon">
+            <Link className="btn-link" to="/">
+              <span className="material-icons">shopping_cart</span>
+            </Link>
           </div>
-          <div className="sub-menu"> 
-            <button className="btn btn-cta">Login</button>
-            <div className="header-icon">
-              <a className="btn-link" href="/mycart/mycart.html"><span className="material-icons">shopping_cart</span></a>                   
-            </div>
-            <div className="header-icon"> 
-              <a className="btn-link" href="/mywishlist/wishlist.html"><span className="material-icons">favorite_border</span></a>                
-            </div>                         
-         </div> 
-       </div>
-    </header>  
- );
+          <div className="header-icon">
+            <Link className="btn-link" to="/">
+              <span className="material-icons">favorite_border</span>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
 };
 
-export {Header};
+export { Header };
