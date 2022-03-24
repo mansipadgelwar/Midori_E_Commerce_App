@@ -1,21 +1,21 @@
-.card-mycart{
-    display: flex;
-    flex-direction: column;
-    gap: 0.62rem;
+.card-mycart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.62rem;
 }
 
-.card-mycart-detail{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0.5rem;
+.card-mycart-detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.5rem;
 }
 
-.mycart .text-only-card{
-    padding: 2rem;
-    margin: 0.62rem;     
+.mycart .text-only-card {
+  padding: 2rem;
+  margin: 0.62rem;
 }
 
-.mycart .product-description{
-    padding: 1rem;
+.mycart .product-description {
+  padding: 1rem;
 }
