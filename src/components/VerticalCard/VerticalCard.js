@@ -1,5 +1,3 @@
-import "./App.css";
-
 const VerticalCard = () => {
     return(
     <article className="vertical-card"> 

@@ -1,5 +1,4 @@
 import "./ProductFilter.css";
-import "App.css";
 
 const ProductFilter = () => {
     return(
