@@ -10,7 +10,7 @@ function App() {
           Welcome to <span>mockBee!</span>
         </h1>
         <p className="brand-description">
-          Get started by editing <code>src/App.js</code>
+          Hello <code>src/App.js</code>
         </p>
         <div className="links">
           <a
