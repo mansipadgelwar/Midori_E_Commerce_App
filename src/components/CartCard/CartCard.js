@@ -5,11 +5,7 @@ const CartCard = () => {
   return (
     <article className="sub-section-container">
       <div className="sub-section-image">
-        <img
-          src="/images/Plant1.jpg"
-          alt="product"
-          className="img-responsive ss-image"
-        />
+        <img src="/" alt="product" className="img-responsive ss-image" />
       </div>
       <div className="mycart-description">
         <h3>Fittonia Green Plant</h3>

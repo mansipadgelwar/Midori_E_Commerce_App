@@ -9,11 +9,7 @@ const Home = () => {
       <section className="main-content-page">
         <div className="three-box-section">
           <article className="category">
-            <img
-              src="/images/Plant1.jpg"
-              alt="plant"
-              className="img card-image"
-            />
+            <img src="/" alt="plant" className="img card-image" />
             <Link
               href="/product/product.html"
               target="_blank"
@@ -24,11 +20,7 @@ const Home = () => {
           </article>
 
           <article className="category">
-            <img
-              src="/images/Plant2.jpg"
-              alt="plant"
-              className="img card-image"
-            />
+            <img src="/" alt="plant" className="img card-image" />
             <Link
               href="/product/product.html"
               target="_blank"
@@ -39,11 +31,7 @@ const Home = () => {
           </article>
 
           <article className="category">
-            <img
-              src="/images/Plant3.jpg"
-              alt="plant"
-              className="img card-image"
-            />
+            <img src="/" alt="plant" className="img card-image" />
             <Link
               href="/product/product.html"
               target="_blank"
@@ -55,7 +43,7 @@ const Home = () => {
         </div>
 
         <div className="hero-img">
-          <img src="/images/Plant4.jpg" alt="hero-img" />
+          <img src="/" alt="hero-img" />
           <div className="hero-img-overlay">
             <h2>Indoor Plants</h2>
             <h4>Live with Nature</h4>
@@ -69,11 +57,7 @@ const Home = () => {
           <article className="sub-section-container">
             <div className="sub-section">
               <div className="sub-section-image">
-                <img
-                  src="/images/Plant1.jpg"
-                  alt="plant"
-                  className="ss-image"
-                />
+                <img src="/" alt="plant" className="ss-image" />
               </div>
               <div className="sub-section-description">
                 <h3>Planters on fleek</h3>
@@ -85,11 +69,7 @@ const Home = () => {
           <article className="sub-section-container">
             <div className="sub-section">
               <div className="sub-section-image">
-                <img
-                  src="/images/Plant1.jpg"
-                  alt="plant"
-                  className="ss-image"
-                />
+                <img src="/" alt="plant" className="ss-image" />
               </div>
               <div className="sub-section-description">
                 <h3>Planters on fleek</h3>

@@ -10,11 +10,7 @@ const MyWishlist = () => {
         <article className="vertical-card">
           <span className="material-icons-outlined icon">favorite</span>
           <div className="img-container">
-            <img
-              src="/images/Plant1.jpg"
-              alt="plant"
-              className="img-responsive"
-            />
+            <img src="/" alt="plant" className="img-responsive" />
           </div>
           <div className="product-description">
             <h3 className="product-main-heading"> Monstera Deliciosa Plant </h3>
