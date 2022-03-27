@@ -34,7 +34,7 @@ const ProductFilter = () => {
               name="climbers"
               id="climbers"
             />
-            <label for="climbers" className="checkbox-detail">
+            <label htmlFor="climbers" className="checkbox-detail">
               Climbers
             </label>
           </div>
@@ -45,7 +45,7 @@ const ProductFilter = () => {
               name="flowering"
               id="flowering"
             />
-            <label for="flowering" className="checkbox-detail">
+            <label htmlFor="flowering" className="checkbox-detail">
               Flowering Plants
             </label>
           </div>
@@ -56,7 +56,7 @@ const ProductFilter = () => {
               name="cacti"
               id="cacti"
             />
-            <label for="cacti" className="checkbox-detail">
+            <label htmlFor="cacti" className="checkbox-detail">
               Cacti & Succulents
             </label>
           </div>
@@ -70,7 +70,7 @@ const ProductFilter = () => {
               name="four-star"
               id="four-star"
             />
-            <label for="four-star" className="checkbox-detail">
+            <label htmlFor="four-star" className="checkbox-detail">
               4 Stars & above
             </label>
           </div>
@@ -81,7 +81,7 @@ const ProductFilter = () => {
               name="three-star"
               id="three-star"
             />
-            <label for="three-star" className="checkbox-detail">
+            <label htmlFor="three-star" className="checkbox-detail">
               3 Stars & above
             </label>
           </div>
@@ -92,7 +92,7 @@ const ProductFilter = () => {
               name="two-star"
               id="two-star"
             />
-            <label for="two-star" className="checkbox-detail">
+            <label htmlFor="two-star" className="checkbox-detail">
               2 Stars & above
             </label>
           </div>
@@ -103,7 +103,7 @@ const ProductFilter = () => {
               name="one-star"
               id="one-star"
             />
-            <label for="one-star" className="checkbox-detail">
+            <label htmlFor="one-star" className="checkbox-detail">
               1 Star & above
             </label>
           </div>
@@ -117,7 +117,7 @@ const ProductFilter = () => {
               name="price"
               id="low-to-high"
             />
-            <label for="low-to-high" className="checkbox-detail">
+            <label htmlFor="low-to-high" className="checkbox-detail">
               Price - Low to High
             </label>
           </div>
@@ -128,7 +128,7 @@ const ProductFilter = () => {
               name="price"
               id="high-to-low"
             />
-            <label for="high-to-low" className="checkbox-detail">
+            <label htmlFor="high-to-low" className="checkbox-detail">
               Price - High to Low
             </label>
           </div>

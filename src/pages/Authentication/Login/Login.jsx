@@ -9,7 +9,7 @@ const Login = () => {
         <div className="authentication-form-container">
           <form className="form" action="">
             <h3 className="h3">LOGIN</h3>
-            <label for="email" className="input-label">
+            <label htmlFor="email" className="input-label">
               Email Address:{" "}
             </label>
             <div className="input-icon icons-left">
@@ -23,7 +23,7 @@ const Login = () => {
               />
             </div>
 
-            <label for="password" className="input-label">
+            <label htmlFor="password" className="input-label">
               Password:{" "}
             </label>
             <div className="input-icon icons-left">
@@ -45,7 +45,7 @@ const Login = () => {
                   name="remember-me"
                   id="remember-me"
                 />
-                <label for="remember-me">
+                <label htmlFor="remember-me">
                   <span className="checkbox-detail">Remember me</span>
                 </label>
               </div>
