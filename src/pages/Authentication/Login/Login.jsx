@@ -55,9 +55,9 @@ const Login = () => {
             </div>
 
             <button className="btn btn-cta">Login</button>
-            <a className="btn-link" href="./sign-up.html">
+            <Link to="/" className="btn-link">
               Create New Account &gt
-            </a>
+            </Link>
           </form>
         </div>
       </article>
