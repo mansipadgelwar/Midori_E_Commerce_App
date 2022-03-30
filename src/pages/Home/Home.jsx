@@ -1,17 +1,15 @@
-import { Header } from "../../components/header/Header";
-import { Footer } from "../../components/footer/Footer";
+import { Footer } from "../../components";
 import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
     <div>
-      <Header />
       <section className="main-content-page">
         <div className="three-box-section">
           <article className="category">
             <img src="/" alt="plant" className="img card-image" />
             <Link
-              href="/product/product.html"
+              to="/productlisting"
               target="_blank"
               className="category-text-overlay text-bold"
             >
@@ -22,7 +20,7 @@ const Home = () => {
           <article className="category">
             <img src="/" alt="plant" className="img card-image" />
             <Link
-              href="/product/product.html"
+              to="/productlisting"
               target="_blank"
               className="category-text-overlay text-bold"
             >
@@ -33,7 +31,7 @@ const Home = () => {
           <article className="category">
             <img src="/" alt="plant" className="img card-image" />
             <Link
-              href="/product/product.html"
+              to="/productlisting"
               target="_blank"
               className="category-text-overlay text-bold"
             >

@@ -1,10 +1,6 @@
-import { Header } from "../../components/header/Header";
-
 const MyWishlist = () => {
   return (
     <div>
-      <Header />
-
       <h3 className="h3 center-text">My Wishlist</h3>
       <section className="mywishlist-land-page">
         <article className="vertical-card">

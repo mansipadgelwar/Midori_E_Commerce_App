@@ -1,11 +1,8 @@
-import { ProductFilter } from "../../components/ProductFilter/ProductFilter";
-import { Header } from "../../components/header/Header";
-import { VerticalCard } from "../../components/VerticalCard/VerticalCard";
+import { ProductFilter, VerticalCard } from "../../components";
 
 const ProductListing = () => {
   return (
     <div class="documentation-container">
-      <Header />
       <div class="product-main-content">
         <ProductFilter />
         <main class="main-body">

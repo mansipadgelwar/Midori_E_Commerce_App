@@ -1,10 +1,8 @@
-import { Header } from "../../components/header/Header";
 import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
     <div className="authentication-page">
-      <Header />
       <article className="form-container login-form">
         <div className="authentication-form-container">
           <form className="form" action="">

@@ -1,10 +1,8 @@
-import { Header } from "../../components/header/Header";
 import { Link } from "react-router-dom";
 
 const Signup = () => {
   return (
     <div class="authentication-page">
-      <Header />
       <article class="form-container">
         <div class="authentication-form-container">
           <form class="form" action="">

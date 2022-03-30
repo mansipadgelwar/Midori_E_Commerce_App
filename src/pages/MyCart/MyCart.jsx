@@ -1,12 +1,8 @@
-import { Header } from "../../components/header/Header";
-import { Footer } from "../../components/footer/Footer";
-import { CartPrice } from "../../components/CartPrice/CartPrice";
-import { CartCard } from "../../components/CartCard/CartCard";
+import { Footer, CartPrice, CartCard } from "../../components";
 
 const MyCart = () => {
   return (
     <div>
-      <Header />
       <div className="mycart-container">
         <CartCard />
         <CartPrice />
