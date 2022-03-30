@@ -5,7 +5,7 @@ const Logout = () => {
     <div className="authentication-page">
       <div className="logout-content">
         <h2 className="h2">Logged Out</h2>
-        <Link to="/" className="btn btn-cta btn-link">
+        <Link to="/login" className="btn btn-cta btn-link">
           Sign in Again
         </Link>
       </div>

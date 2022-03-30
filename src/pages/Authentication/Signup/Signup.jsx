@@ -85,7 +85,7 @@ const Signup = () => {
             </div>
 
             <button class="btn btn-cta">Create New Account</button>
-            <Link class="btn-link" href="./login.html">
+            <Link class="btn-link" to="./login">
               Already have an account &gt
             </Link>
           </form>

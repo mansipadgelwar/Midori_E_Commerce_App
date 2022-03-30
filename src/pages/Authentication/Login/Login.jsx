@@ -53,7 +53,7 @@ const Login = () => {
             </div>
 
             <button className="btn btn-cta">Login</button>
-            <Link to="/" className="btn-link">
+            <Link to="/signup" className="btn-link">
               Create New Account &gt
             </Link>
           </form>
