@@ -6,7 +6,8 @@ import {
   MyCart,
   Login,
   Logout,
-  Signup
+  Signup,
+  NotFound
 } from "./pages";
 import { Route, Routes } from "react-router-dom";
 //import NavBar from "./components/NavBar/NavBar";
@@ -23,6 +24,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
