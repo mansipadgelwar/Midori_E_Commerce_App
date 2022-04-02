@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./NotFound.css";
 
 const NotFound = () => {
@@ -5,7 +6,9 @@ const NotFound = () => {
     <div className="page-container">
       <h1 className="page-heading">404</h1>
       <h5 className="page-subheading">This page is missing</h5>
-      <button className="btn btn-secondary-outline">Go back to home</button>
+      <Link to="/" className="btn btn-link btn-secondary-outline">
+        Go back to home
+      </Link>
     </div>
   );
 };
