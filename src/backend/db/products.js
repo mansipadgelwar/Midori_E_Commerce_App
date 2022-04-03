@@ -30,7 +30,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    name: "Money Plant Variegated",
+    name: "Money Plant",
     image: "",
     actualPrice: 399,
     discountedPrice: 349,
