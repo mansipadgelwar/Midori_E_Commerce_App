@@ -10,7 +10,6 @@ import {
   NotFound
 } from "./pages";
 import { Route, Routes } from "react-router-dom";
-//import NavBar from "./components/NavBar/NavBar";
 import { NavBar } from "./components";
 function App() {
   return (
