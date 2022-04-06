@@ -1,14 +1,25 @@
-const VerticalCard = () => {
+const VerticalCard = ({
+  _id,
+  name,
+  image,
+  actualPrice,
+  discountedPrice,
+  discount,
+  categoryName,
+  rating,
+  outOfStock
+}) => {
   return (
     <article className="vertical-card">
       <span className="material-icons-outlined icon">favorite</span>
       <div className="img-container">
-        <img src="/" alt="plant" className="img-responsive" />
+        <img src={image} alt={name} className="img-responsive" />
       </div>
       <div className="product-description">
-        <h3 className="product-main-heading"> Monstera Deliciosa Plant </h3>
+        <h3 className="product-main-heading">{name}</h3>
         <p className="product-sub-heading">
-          Rs. 1945 <span className="product-discount">(5% OFF)</span>
+          {actualPrice}
+          <span className="product-discount">({discount}% OFF)</span>
         </p>
       </div>
       <div className="button-container">
