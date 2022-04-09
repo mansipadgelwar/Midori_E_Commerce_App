@@ -19,7 +19,7 @@ const VerticalCard = ({
         <h3 className="product-main-heading">{name}</h3>
         <p className="product-sub-heading">
           {actualPrice}
-          <span className="product-discount">({discount}% OFF)</span>
+          <span className="product-discount">({discount})</span>
         </p>
       </div>
       <div className="button-container">
