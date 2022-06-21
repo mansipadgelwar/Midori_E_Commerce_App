@@ -1,5 +1,11 @@
 import axios from "axios";
-import React, { createContext, useContext, useReducer, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  useState,
+} from "react";
 import {
   addNewItemTocart,
   addProductToWishlist,
@@ -15,6 +21,8 @@ const DataLayerContext = createContext();
 const DataLayerProvider = ({ children }) => {
   const { authToken } = useAuth();
   const { showToast } = useToast();
+  const [searchTerm, setSearchTerm] = useState(" ");
+
   const storeDataReducer = (state, action) => {
     switch (action.type) {
       case "GET_WISHLIST_DATA":
@@ -122,6 +130,8 @@ const DataLayerProvider = ({ children }) => {
         state,
         dispatch,
         handleAddToCart,
+        setSearchTerm,
+        searchTerm,
       }}
     >
       {children}

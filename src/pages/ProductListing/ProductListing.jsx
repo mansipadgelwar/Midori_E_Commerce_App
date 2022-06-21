@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDataLayer } from "../../context";
 
 const ProductListing = () => {
-  const { getListOfProducts, state } = useDataLayer();
+  const { getListOfProducts, state, searchTerm } = useDataLayer();
   useEffect(() => {
     getListOfProducts();
   }, []);
@@ -18,9 +18,19 @@ const ProductListing = () => {
             <span class="main-body-sub-heading">(Showing 20 products)</span>
           </div>
           <section class="mywishlist-land-page">
-            {state.productData.map((product) => {
-              return <VerticalCard product={product} />;
-            })}
+            {state.productData
+              .filter((item) => {
+                if (searchTerm === "") {
+                  return item;
+                } else if (
+                  item.name.toLowerCase().includes(searchTerm.toLowerCase())
+                ) {
+                  return item;
+                }
+              })
+              .map((product) => {
+                return <VerticalCard product={product} />;
+              })}
           </section>
         </main>
       </div>
