@@ -1,26 +1,40 @@
 import "./CartCard.css";
-import { Link } from "react-router-dom";
+import { useDataLayer } from "../../context/dataContext/dataContext";
 
-const CartCard = () => {
+const CartCard = ({ product }) => {
+  const { handleAddToCart, state } = useDataLayer();
+
+  const isInCart =
+    state.cartData.find((element) => element._id === product._id) === undefined
+      ? false
+      : true;
+
   return (
     <article className="sub-section-container">
       <div className="sub-section-image">
-        <img src="/" alt="product" className="img-responsive ss-image" />
+        <img
+          src={product.image}
+          alt={product.name}
+          className="img-responsive ss-image"
+        />
       </div>
       <div className="mycart-description">
-        <h3>Fittonia Green Plant</h3>
-        <h2>₹299</h2>
-        <span className="text-line-through">₹399</span>
-        <h4>25% off</h4>
+        <h3>{product.name}</h3>
+        <h2>₹{product.discountedPrice}</h2>
+        <span className="text-line-through">₹{product.actualPrice}</span>
+        <h4>{product.discount}</h4>
         <div className="quantity-container">
           <button className="btn btn-primary-outline">-</button>
           <p className="quantity-display">1</p>
           <button className="btn btn-primary-outline">+</button>
         </div>
         <div class="btn-link">
-          <Link to="/">
-            <span className="btn-link material-icons">delete</span>
-          </Link>
+          <span
+            className="btn-link material-icons"
+            onClick={(event) => handleAddToCart(event, product, isInCart)}
+          >
+            delete
+          </span>
         </div>
         <button className="btn btn-primary-outline">Move to Wishlist</button>
       </div>

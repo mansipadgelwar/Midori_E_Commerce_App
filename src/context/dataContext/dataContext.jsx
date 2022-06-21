@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { createContext, useContext, useReducer, useEffect } from "react";
 import {
+  addNewItemTocart,
   addProductToWishlist,
   getAllItemsOfWishlist,
+  removeItemFromCart,
   removeProductFromWishlist,
 } from "../../services";
 import { useAuth } from "../authContext/authContext";
@@ -19,6 +21,8 @@ const DataLayerProvider = ({ children }) => {
         return { ...state, wishlistData: [...action.payload] };
       case "GET_PRODUCT_DATA":
         return { ...state, productData: [...action.payload] };
+      case "GET_CART_DATA":
+        return { ...state, cartData: [...action.payload] };
       default:
         return state;
     }
@@ -67,7 +71,6 @@ const DataLayerProvider = ({ children }) => {
         type: "GET_WISHLIST_DATA",
         payload: wishlist,
       });
-      console.log("whishlist data", state.wishlistData);
       showToast(
         isInWishlist
           ? "Product removed from wishlist"
@@ -76,6 +79,28 @@ const DataLayerProvider = ({ children }) => {
       );
     } catch (error) {
       showToast("Wishlist error", "error");
+    }
+  };
+
+  const handleAddToCart = async (event, product, isInCart) => {
+    event.preventDefault();
+    event.stopPropagation();
+    try {
+      let {
+        data: { cart },
+      } = isInCart
+        ? await removeItemFromCart(authToken, product._id)
+        : await addNewItemTocart(authToken, product);
+      dispatch({
+        type: "GET_CART_DATA",
+        payload: cart,
+      });
+      showToast(
+        isInCart ? "Product removed from cart" : "Product added to cart",
+        "success"
+      );
+    } catch (error) {
+      showToast("Cart error", "error");
     }
   };
 
@@ -91,7 +116,13 @@ const DataLayerProvider = ({ children }) => {
 
   return (
     <DataLayerContext.Provider
-      value={{ getListOfProducts, addToWishlist, state, dispatch }}
+      value={{
+        getListOfProducts,
+        addToWishlist,
+        state,
+        dispatch,
+        handleAddToCart,
+      }}
     >
       {children}
     </DataLayerContext.Provider>

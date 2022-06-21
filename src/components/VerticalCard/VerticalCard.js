@@ -3,11 +3,16 @@ import { useDataLayer } from "../../context";
 import "./VerticalCard.css";
 
 const VerticalCard = ({ product }) => {
-  const { addToWishlist, state } = useDataLayer();
+  const { addToWishlist, state, handleAddToCart } = useDataLayer();
   const currentProductInWishlist = state.wishlistData.find(
     (element) => element._id === product._id
   );
   const isInWishlist = currentProductInWishlist === undefined ? false : true;
+
+  const isInCart =
+    state.cartData.find((element) => element._id === product._id) === undefined
+      ? false
+      : true;
 
   return (
     <article className="vertical-card">
@@ -32,7 +37,12 @@ const VerticalCard = ({ product }) => {
         </p>
       </div>
       <div className="button-container">
-        <button className="btn btn-cta">Add To Bag</button>
+        <button
+          className="btn btn-cta"
+          onClick={(event) => handleAddToCart(event, product, isInCart)}
+        >
+          {!isInCart ? "Add to cart" : "Go to cart"}
+        </button>
       </div>
     </article>
   );

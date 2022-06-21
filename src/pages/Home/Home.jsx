@@ -14,7 +14,6 @@ const Home = () => {
             />
             <Link
               to="/productlisting"
-              target="_blank"
               className="category-text-overlay text-bold"
             >
               Indoor Plants
@@ -29,7 +28,6 @@ const Home = () => {
             />
             <Link
               to="/productlisting"
-              target="_blank"
               className="category-text-overlay text-bold"
             >
               Flowering Plants
@@ -44,7 +42,6 @@ const Home = () => {
             />
             <Link
               to="/productlisting"
-              target="_blank"
               className="category-text-overlay text-bold"
             >
               Outdoor Plants
