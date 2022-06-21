@@ -3,20 +3,19 @@ import { useDataLayer } from "../../context";
 import "./VerticalCard.css";
 
 const VerticalCard = ({ product }) => {
-  const { addToWishlist } = useDataLayer();
-  const [iconClass, setIconClass] = useState(true);
+  const { addToWishlist, state } = useDataLayer();
+  const currentProductInWishlist = state.wishlistData.find(
+    (element) => element._id === product._id
+  );
+  const isInWishlist = currentProductInWishlist === undefined ? false : true;
 
-  function addProductToWishlist(product) {
-    setIconClass((iconClass) => !iconClass);
-    addToWishlist(product);
-  }
   return (
     <article className="vertical-card">
       <button
         className={"material-icons icon btn-link"}
-        onClick={() => addProductToWishlist(product)}
+        onClick={(event) => addToWishlist(event, product, isInWishlist)}
       >
-        {iconClass ? "favorite_border" : "favorite"}
+        {!isInWishlist ? "favorite_border" : "favorite"}
       </button>
       <div className="img-container">
         <img

@@ -54,11 +54,9 @@ const DataLayerProvider = ({ children }) => {
     }
   };
 
-  const addToWishlist = async (product) => {
-    const currentProductInWishlist = state.wishlistData.find(
-      (element) => element._id === product._id
-    );
-    const isInWishlist = currentProductInWishlist === undefined ? false : true;
+  const addToWishlist = async (event, product, isInWishlist) => {
+    event.preventDefault();
+    event.stopPropagation();
     try {
       let {
         data: { wishlist },
