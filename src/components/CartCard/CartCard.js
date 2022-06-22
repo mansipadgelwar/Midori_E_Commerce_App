@@ -31,7 +31,6 @@ const CartCard = ({ product }) => {
           showToast("Product added to wishlist", "success");
         } catch (error) {
           showToast("Wishlist error", "error");
-          console.log("wishlist error", error);
         }
       })(product);
     }, 1500);
