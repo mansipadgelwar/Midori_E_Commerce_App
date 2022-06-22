@@ -96,13 +96,13 @@ export const products = [
   },
   {
     _id: uuid(),
-    name: "Orchid",
+    name: "Orchid Plant",
     image: "https://i.postimg.cc/QNF0Q0jd/orchid.jpg",
     actualPrice: 1299,
     discountedPrice: 999,
     discount: "23% OFF",
     categoryName: "flowering",
     rating: 5,
-    outOfStock: true,
+    outOfStock: false,
   },
 ];

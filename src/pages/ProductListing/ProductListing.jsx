@@ -9,15 +9,15 @@ const ProductListing = () => {
   }, []);
 
   return (
-    <div class="documentation-container">
-      <div class="product-main-content">
+    <div className="documentation-container">
+      <div className="product-main-content">
         <ProductFilter />
-        <main class="main-body">
-          <div class="main-body-heading">
+        <main className="main-body">
+          <div className="main-body-heading">
             Showing All Products
-            <span class="main-body-sub-heading">(Showing 20 products)</span>
+            <span className="main-body-sub-heading">(Showing 20 products)</span>
           </div>
-          <section class="mywishlist-land-page">
+          <section className="mywishlist-land-page">
             {state.productData
               .filter((item) => {
                 if (searchTerm === "") {
@@ -29,7 +29,7 @@ const ProductListing = () => {
                 }
               })
               .map((product) => {
-                return <VerticalCard product={product} />;
+                return <VerticalCard product={product} key={product._id} />;
               })}
           </section>
         </main>

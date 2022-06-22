@@ -15,7 +15,6 @@ const addProductToWishlist = (authToken, product) => {
 };
 
 const removeProductFromWishlist = (authToken, productId) => {
-  console.log(`/api/user/wishlist/${productId}`);
   return axios.delete(`/api/user/wishlist/${productId}`, {
     headers: { authorization: authToken },
   });

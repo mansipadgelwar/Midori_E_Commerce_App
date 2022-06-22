@@ -13,7 +13,6 @@ const VerticalCard = ({ product }) => {
     state.cartData.find((element) => element._id === product._id) === undefined
       ? false
       : true;
-
   return (
     <article className="vertical-card">
       <button

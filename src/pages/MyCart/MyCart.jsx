@@ -8,7 +8,7 @@ const MyCart = () => {
     <div>
       <div className="mycart-container">
         {state.cartData.map((product) => {
-          return <CartCard product={product} />;
+          return <CartCard product={product} key={product._id} />;
         })}
         <CartPrice />
       </div>
