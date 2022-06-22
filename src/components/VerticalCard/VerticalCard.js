@@ -18,7 +18,7 @@ const VerticalCard = ({ product }) => {
     <article className="vertical-card">
       <button
         className={"material-icons icon btn-link"}
-        onClick={(event) => addToWishlist(event, product, isInWishlist)}
+        onClick={(event) => addToWishlist(event, product)}
       >
         {!isInWishlist ? "favorite_border" : "favorite"}
       </button>
@@ -39,7 +39,7 @@ const VerticalCard = ({ product }) => {
       <div className="button-container">
         <button
           className="btn btn-cta"
-          onClick={(event) => handleAddToCart(event, product, isInCart)}
+          onClick={(event) => handleAddToCart(event, product)}
         >
           {!isInCart ? "Add to cart" : "Go to cart"}
         </button>

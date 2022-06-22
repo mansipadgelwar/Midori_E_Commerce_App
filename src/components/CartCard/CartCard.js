@@ -2,12 +2,21 @@ import "./CartCard.css";
 import { useDataLayer } from "../../context/dataContext/dataContext";
 
 const CartCard = ({ product }) => {
-  const { handleAddToCart, state } = useDataLayer();
+  const { handleAddToCart, state, addToWishlist } = useDataLayer();
 
   const isInCart =
     state.cartData.find((element) => element._id === product._id) === undefined
       ? false
       : true;
+
+  const handleWishlistFromCart = (event) => {
+    event.preventDefault();
+    handleAddToCart(event, product);
+    const timer = setTimeout(() => {
+      addToWishlist(event, product);
+    }, 1500);
+    return () => clearTimeout(timer);
+  };
 
   return (
     <article className="sub-section-container">
@@ -31,12 +40,17 @@ const CartCard = ({ product }) => {
         <div class="btn-link">
           <span
             className="btn-link material-icons"
-            onClick={(event) => handleAddToCart(event, product, isInCart)}
+            onClick={(event) => handleAddToCart(event, product)}
           >
             delete
           </span>
         </div>
-        <button className="btn btn-primary-outline">Move to Wishlist</button>
+        <button
+          className="btn btn-primary-outline"
+          onClick={(event) => handleWishlistFromCart(event)}
+        >
+          Move to Wishlist
+        </button>
       </div>
     </article>
   );

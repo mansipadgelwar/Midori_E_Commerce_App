@@ -66,9 +66,14 @@ const DataLayerProvider = ({ children }) => {
     }
   };
 
-  const addToWishlist = async (event, product, isInWishlist) => {
+  const addToWishlist = async (event, product) => {
     event.preventDefault();
     event.stopPropagation();
+    const isInWishlist =
+      state.wishlistData.find((element) => element._id === product._id) ===
+      undefined
+        ? false
+        : true;
     try {
       let {
         data: { wishlist },
@@ -90,9 +95,14 @@ const DataLayerProvider = ({ children }) => {
     }
   };
 
-  const handleAddToCart = async (event, product, isInCart) => {
+  const handleAddToCart = async (event, product) => {
     event.preventDefault();
     event.stopPropagation();
+    const isInCart =
+      state.cartData.find((element) => element._id === product._id) ===
+      undefined
+        ? false
+        : true;
     try {
       let {
         data: { cart },
