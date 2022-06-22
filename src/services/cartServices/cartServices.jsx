@@ -20,4 +20,26 @@ const removeItemFromCart = (authToken, productId) => {
   });
 };
 
-export { getAllItemOfCartService, addNewItemTocart, removeItemFromCart };
+const increaseQuantityService = (authToken, productId) => {
+  return axios.post(
+    `/api/user/cart/${productId}`,
+    { action: { type: "increment" } },
+    { headers: { authorization: authToken } }
+  );
+};
+
+const decreaseQuantityService = (authToken, productId) => {
+  return axios.post(
+    `/api/user/cart/${productId}`,
+    { action: { type: "decrement" } },
+    { headers: { authorization: authToken } }
+  );
+};
+
+export {
+  getAllItemOfCartService,
+  addNewItemTocart,
+  removeItemFromCart,
+  increaseQuantityService,
+  decreaseQuantityService,
+};

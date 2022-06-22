@@ -6,8 +6,9 @@ const CartPrice = () => {
 
   const result = state.cartData.reduce(
     (acc, product) => {
-      acc.actualPrice = acc.actualPrice + product.actualPrice;
-      acc.discountedPrice = acc.discountedPrice + product.discountedPrice;
+      acc.actualPrice = acc.actualPrice + product.qty * product.actualPrice;
+      acc.discountedPrice =
+        acc.discountedPrice + product.qty * product.discountedPrice;
       acc.discount = acc.actualPrice - acc.discountedPrice;
       return acc;
     },
@@ -37,7 +38,7 @@ const CartPrice = () => {
           <hr />
           <div className="card-mycart-detail">
             <span>TOTAL AMOUNT</span>
-            <span>₹ {result.discountedPrice}</span>
+            <span>₹ {result.discountedPrice + deliveryCharges}</span>
           </div>
           <hr />
           <p>You will save ₹ {result.discount} on this order</p>

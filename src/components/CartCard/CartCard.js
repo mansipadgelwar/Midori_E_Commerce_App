@@ -2,6 +2,10 @@ import "./CartCard.css";
 import { useDataLayer, useAuth } from "../../context";
 import { useToast } from "../../custom-hooks/useToast";
 import { addProductToWishlist } from "../../services";
+import {
+  decreaseQuantityService,
+  increaseQuantityService,
+} from "../../services/cartServices/cartServices";
 
 const CartCard = ({ product }) => {
   const { handleAddToCart, state, dispatch } = useDataLayer();
@@ -37,6 +41,23 @@ const CartCard = ({ product }) => {
     return () => clearTimeout(timer);
   };
 
+  const handleProductQuantityInCart = async (authToken, productId, action) => {
+    try {
+      let {
+        data: { cart },
+      } =
+        action === "increase"
+          ? await increaseQuantityService(authToken, productId)
+          : await decreaseQuantityService(authToken, productId);
+      dispatch({
+        type: "GET_CART_DATA",
+        payload: cart,
+      });
+    } catch (error) {
+      console.error("increase/decrease quantity error", error);
+    }
+  };
+
   return (
     <article className="sub-section-container">
       <div className="sub-section-image">
@@ -52,9 +73,23 @@ const CartCard = ({ product }) => {
         <span className="text-line-through">₹{product.actualPrice}</span>
         <h4>{product.discount}</h4>
         <div className="quantity-container">
-          <button className="btn btn-primary-outline">-</button>
-          <p className="quantity-display">1</p>
-          <button className="btn btn-primary-outline">+</button>
+          <button
+            className="btn btn-primary-outline"
+            onClick={() =>
+              handleProductQuantityInCart(authToken, product._id, "decrease")
+            }
+          >
+            -
+          </button>
+          <p className="quantity-display">{product.qty}</p>
+          <button
+            className="btn btn-primary-outline"
+            onClick={() =>
+              handleProductQuantityInCart(authToken, product._id, "increase")
+            }
+          >
+            +
+          </button>
         </div>
         <div className="btn-link">
           <span
