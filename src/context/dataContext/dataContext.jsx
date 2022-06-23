@@ -45,10 +45,8 @@ const DataLayerProvider = ({ children }) => {
           payload: response.data.products,
         });
       }
-      showToast("Product list success", "success");
     } catch (error) {
       showToast("Product list error", "error");
-      console.error("Product list error", error);
     }
   };
 

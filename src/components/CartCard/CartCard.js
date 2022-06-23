@@ -23,16 +23,18 @@ const CartCard = ({ product }) => {
             ? false
             : true;
         try {
-          let {
-            data: { wishlist },
-          } = isInWishlist
-            ? showToast("Product is already wishlisted.", "success")
-            : await addProductToWishlist(authToken, product);
-          dispatch({
-            type: "GET_WISHLIST_DATA",
-            payload: wishlist,
-          });
-          showToast("Product added to wishlist", "success");
+          if (isInWishlist) {
+            return showToast("Product is already wishlisted.", "success");
+          } else {
+            let {
+              data: { wishlist },
+            } = await addProductToWishlist(authToken, product);
+            dispatch({
+              type: "GET_WISHLIST_DATA",
+              payload: wishlist,
+            });
+            showToast("Product added to wishlist", "success");
+          }
         } catch (error) {
           showToast("Wishlist error", "error");
         }

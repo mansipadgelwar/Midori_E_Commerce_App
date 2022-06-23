@@ -1,7 +1,8 @@
 import { Footer } from "../../components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const currentLocation = useNavigate();
   return (
     <div>
       <section className="main-content-page">
@@ -57,7 +58,11 @@ const Home = () => {
           <div className="hero-img-overlay">
             <h2>Indoor Plants</h2>
             <h4>Live with Nature</h4>
-            <button id="btn-shop-now" className="btn btn-secondary">
+            <button
+              id="btn-shop-now"
+              className="btn btn-secondary"
+              onClick={() => currentLocation("/productListing")}
+            >
               Shop Now
             </button>
           </div>

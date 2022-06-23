@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDataLayer } from "../../context";
 import "./VerticalCard.css";
 
 const VerticalCard = ({ product }) => {
   const { addToWishlist, state, handleAddToCart } = useDataLayer();
+  const currentLocation = useNavigate();
   const currentProductInWishlist = state.wishlistData.find(
     (element) => element._id === product._id
   );
@@ -36,12 +37,21 @@ const VerticalCard = ({ product }) => {
         </p>
       </div>
       <div className="button-container">
-        <button
-          className="btn btn-cta"
-          onClick={(event) => handleAddToCart(event, product)}
-        >
-          {!isInCart ? "Add to cart" : "Go to cart"}
-        </button>
+        {isInCart ? (
+          <button
+            className="btn btn-cta"
+            onClick={() => currentLocation("/mycart")}
+          >
+            Go to cart
+          </button>
+        ) : (
+          <button
+            className="btn btn-cta"
+            onClick={(event) => handleAddToCart(event, product)}
+          >
+            Add to cart
+          </button>
+        )}
       </div>
     </article>
   );
