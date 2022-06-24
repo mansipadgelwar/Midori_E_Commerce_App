@@ -22,15 +22,38 @@ const DataLayerProvider = ({ children }) => {
   const { authToken } = useAuth();
   const { showToast } = useToast();
   const [searchTerm, setSearchTerm] = useState(" ");
+  const [category, setCategory] = useState([
+    { id: 1, checked: false, label: "Climbers" },
+    { id: 2, checked: false, label: "Indoor" },
+    { id: 3, checked: false, label: "Cacti" },
+    { id: 4, checked: false, label: "Flowering" },
+  ]);
+  const [rangePrice, setRangePrice] = useState(1000);
+  const [rating, setRating] = useState([
+    { id: 1, checked: false, label: "Climbers" },
+    { id: 2, checked: false, label: "Indoor" },
+    { id: 3, checked: false, label: "Cacti" },
+    { id: 4, checked: false, label: "Flowering" },
+  ]);
+  const [sortType, setSortType] = useState([
+    { id: 1, label: "Low to High" },
+    { id: 2, label: "High to Low" },
+  ]);
 
   const storeDataReducer = (state, action) => {
     switch (action.type) {
       case "GET_WISHLIST_DATA":
         return { ...state, wishlistData: [...action.payload] };
       case "GET_PRODUCT_DATA":
-        return { ...state, productData: [...action.payload] };
+        return {
+          ...state,
+          productData: [...action.payload],
+          filteredData: [...action.payload],
+        };
       case "GET_CART_DATA":
         return { ...state, cartData: [...action.payload] };
+      case "SET_FILTERED_DATA":
+        return { ...state, filteredData: [...action.payload] };
       default:
         return state;
     }
@@ -124,6 +147,7 @@ const DataLayerProvider = ({ children }) => {
     productData: [],
     wishlistData: [],
     cartData: [],
+    filteredData: [],
   });
 
   useEffect(() => {
@@ -140,6 +164,12 @@ const DataLayerProvider = ({ children }) => {
         handleAddToCart,
         setSearchTerm,
         searchTerm,
+        category,
+        setCategory,
+        rangePrice,
+        setRangePrice,
+        sortType,
+        setSortType,
       }}
     >
       {children}

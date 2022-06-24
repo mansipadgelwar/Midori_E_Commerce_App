@@ -1,6 +1,59 @@
+import { useState, useEffect } from "react";
 import "./ProductFilter.css";
+import { useDataLayer } from "../../context";
 
 const ProductFilter = () => {
+  const {
+    state,
+    dispatch,
+    rangePrice,
+    setRangePrice,
+    category,
+    setCategory,
+    sortType,
+    setSortType,
+  } = useDataLayer();
+
+  const handlChangeChecked = (id) => {
+    const categoryStateList = category;
+    const changeCheckedCategory = categoryStateList.map((item) =>
+      item.id === id ? { ...item, checked: !item.checked } : item
+    );
+    setCategory(changeCheckedCategory);
+  };
+
+  const applyFilters = () => {
+    let filteredData = state.productData;
+
+    //filter by category
+    const categoriesChecked = category
+      .filter((item) => item.checked)
+      .map((item) => item.label.toLowerCase());
+
+    if (categoriesChecked.length) {
+      filteredData = filteredData?.filter((item) =>
+        categoriesChecked.includes(item.categoryName)
+      );
+    }
+
+    //filter by price range
+    filteredData = filteredData?.filter(
+      (item) => item.discountedPrice < rangePrice
+    );
+
+    //sort by price
+    filteredData =
+      sortType === 1
+        ? filteredData.sort((a, b) => b.discountedPrice - a.discountedPrice)
+        : filteredData.sort((a, b) => a.discountedPrice - b.discountedPrice);
+
+    dispatch({ type: "SET_FILTERED_DATA", payload: filteredData });
+  };
+
+  useEffect(() => {
+    applyFilters();
+  }, [category, rangePrice]);
+
   return (
     <aside className="side_bar">
       <div className="sidebar_menu">
@@ -12,54 +65,39 @@ const ProductFilter = () => {
           <h3>Range</h3>
           <div className="slider-container">
             <div className="range-container">
-              <span className="range min-range">50</span>
-              <span className="range mid-range">150</span>
-              <span className="range max-range">250</span>
+              <span className="range min-range">0</span>
+              <span className="range mid-range">500</span>
+              <span className="range max-range">1000</span>
             </div>
             <input
               type="range"
-              min="50"
-              max="250"
-              value="150"
+              min="0"
+              max="1000"
               className="slider"
+              value={rangePrice}
+              onChange={(e) => setRangePrice(e.target.value)}
             />
           </div>
         </div>
         <div>
           <h3>Category</h3>
-          <div className="checkbox-container">
-            <input
-              className="checkbox"
-              type="checkbox"
-              name="climbers"
-              id="climbers"
-            />
-            <label htmlFor="climbers" className="checkbox-detail">
-              Climbers
-            </label>
-          </div>
-          <div className="checkbox-container">
-            <input
-              className="checkbox"
-              type="checkbox"
-              name="flowering"
-              id="flowering"
-            />
-            <label htmlFor="flowering" className="checkbox-detail">
-              Flowering Plants
-            </label>
-          </div>
-          <div className="checkbox-container">
-            <input
-              className="checkbox"
-              type="checkbox"
-              name="cacti"
-              id="cacti"
-            />
-            <label htmlFor="cacti" className="checkbox-detail">
-              Cacti & Succulents
-            </label>
-          </div>
+          {category.map((item) => {
+            return (
+              <div className="checkbox-container" key={item.id}>
+                <input
+                  className="checkbox"
+                  type="checkbox"
+                  name={item.label}
+                  id={item.id}
+                  checked={item.checked}
+                  onChange={() => handlChangeChecked(item.id)}
+                />
+                <label htmlFor={item.label} className="checkbox-detail">
+                  {item.label}
+                </label>
+              </div>
+            );
+          })}
         </div>
         <div>
           <h3>Rating</h3>
@@ -67,7 +105,7 @@ const ProductFilter = () => {
             <input
               className="checkbox"
               type="radio"
-              name="four-star"
+              name="star"
               id="four-star"
             />
             <label htmlFor="four-star" className="checkbox-detail">
@@ -78,7 +116,7 @@ const ProductFilter = () => {
             <input
               className="checkbox"
               type="radio"
-              name="three-star"
+              name="star"
               id="three-star"
             />
             <label htmlFor="three-star" className="checkbox-detail">
@@ -89,7 +127,7 @@ const ProductFilter = () => {
             <input
               className="checkbox"
               type="radio"
-              name="two-star"
+              name="star"
               id="two-star"
             />
             <label htmlFor="two-star" className="checkbox-detail">
@@ -100,7 +138,7 @@ const ProductFilter = () => {
             <input
               className="checkbox"
               type="radio"
-              name="one-star"
+              name="star"
               id="one-star"
             />
             <label htmlFor="one-star" className="checkbox-detail">
@@ -110,28 +148,23 @@ const ProductFilter = () => {
         </div>
         <div>
           <h3>Sort by</h3>
-          <div className="checkbox-container">
-            <input
-              className="checkbox"
-              type="radio"
-              name="price"
-              id="low-to-high"
-            />
-            <label htmlFor="low-to-high" className="checkbox-detail">
-              Price - Low to High
-            </label>
-          </div>
-          <div className="checkbox-container">
-            <input
-              className="checkbox"
-              type="radio"
-              name="price"
-              id="high-to-low"
-            />
-            <label htmlFor="high-to-low" className="checkbox-detail">
-              Price - High to Low
-            </label>
-          </div>
+          {sortType.map((item) => {
+            return (
+              <div className="checkbox-container" key={item.id}>
+                <input
+                  className="checkbox"
+                  type="radio"
+                  name="price"
+                  id={item.id}
+                  onChange={() => setSortType(sortType)}
+                  value={sortType}
+                />
+                <label htmlFor="low-to-high" className="checkbox-detail">
+                  Price - {item.label}
+                </label>
+              </div>
+            );
+          })}
         </div>
       </div>
     </aside>

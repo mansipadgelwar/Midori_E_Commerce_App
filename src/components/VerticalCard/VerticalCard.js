@@ -32,7 +32,7 @@ const VerticalCard = ({ product }) => {
       <div className="product-description">
         <h3 className="product-main-heading">{product.name}</h3>
         <p className="product-sub-heading">
-          ₹{product.actualPrice}
+          ₹{product.discountedPrice}
           <span className="product-discount">({product.discount})</span>
         </p>
       </div>

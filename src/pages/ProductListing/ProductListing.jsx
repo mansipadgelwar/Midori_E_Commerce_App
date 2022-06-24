@@ -18,7 +18,7 @@ const ProductListing = () => {
             <span className="main-body-sub-heading">(Showing 20 products)</span>
           </div>
           <section className="mywishlist-land-page">
-            {state.productData
+            {state.filteredData
               .filter((item) => {
                 if (searchTerm === "") {
                   return item;
