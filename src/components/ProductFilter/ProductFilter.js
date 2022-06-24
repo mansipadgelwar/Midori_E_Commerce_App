@@ -4,14 +4,14 @@ import { useDataLayer } from "../../context";
 
 const sortByPriceDB = [
   { id: 1, label: "Low to High" },
-  { id: 2, label: "High to Low" }
+  { id: 2, label: "High to Low" },
 ];
 
 const filterByRatingsDB = [
   { id: 4, label: "4 Stars & above" },
   { id: 3, label: "3 Stars & above" },
   { id: 2, label: "2 Stars & above" },
-  { id: 1, label: "1 Stars & above" }
+  { id: 1, label: "1 Stars & above" },
 ];
 const ProductFilter = () => {
   const {
@@ -24,7 +24,8 @@ const ProductFilter = () => {
     sortType,
     setSortType,
     rating,
-    setRating
+    setRating,
+    searchTerm,
   } = useDataLayer();
 
   const handlChangeChecked = (id) => {
@@ -55,13 +56,25 @@ const ProductFilter = () => {
       }
 
       //filter by price range
-      filteredData = filteredData?.filter(
-        (item) => item.discountedPrice < rangePrice
-      );
+      if (rangePrice) {
+        filteredData = filteredData?.filter(
+          (item) => item.discountedPrice < rangePrice
+        );
+      }
 
       //filter by rating
-      filteredData = filteredData?.filter((item) => item.rating >= rating);
+      if (rating) {
+        filteredData = filteredData?.filter((item) => item.rating >= rating);
+      }
 
+      //filter by search
+      if (searchTerm) {
+        filteredData = filteredData.filter(
+          (item) =>
+            item.name.toLowerCase().search(searchTerm.toLowerCase().trim()) !==
+            -1
+        );
+      }
       //sort by price
       filteredData =
         sortType === 2
@@ -71,7 +84,7 @@ const ProductFilter = () => {
       dispatch({ type: "SET_FILTERED_DATA", payload: filteredData });
     };
     applyFilters();
-  }, [category, dispatch, rangePrice, rating, sortType, state.productData]);
+  }, [rating, rangePrice, category, sortType, searchTerm]);
 
   return (
     <aside className="side_bar">
