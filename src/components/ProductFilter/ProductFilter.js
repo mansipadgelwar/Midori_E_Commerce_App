@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import "./ProductFilter.css";
 import { useDataLayer } from "../../context";
 
 const sortByPriceDB = [
   { id: 1, label: "Low to High" },
-  { id: 2, label: "High to Low" },
+  { id: 2, label: "High to Low" }
 ];
 
 const filterByRatingsDB = [
   { id: 4, label: "4 Stars & above" },
   { id: 3, label: "3 Stars & above" },
   { id: 2, label: "2 Stars & above" },
-  { id: 1, label: "1 Stars & above" },
+  { id: 1, label: "1 Stars & above" }
 ];
 const ProductFilter = () => {
   const {
@@ -24,7 +24,7 @@ const ProductFilter = () => {
     sortType,
     setSortType,
     rating,
-    setRating,
+    setRating
   } = useDataLayer();
 
   const handlChangeChecked = (id) => {
@@ -35,44 +35,43 @@ const ProductFilter = () => {
     setCategory(changeCheckedCategory);
   };
 
-  const applyFilters = () => {
-    let filteredData = state.productData;
-
-    //filter by category
-    const categoriesChecked = category
-      .filter((item) => item.checked)
-      .map((item) => item.label.toLowerCase());
-
-    if (categoriesChecked.length) {
-      filteredData = filteredData?.filter((item) =>
-        categoriesChecked.includes(item.categoryName)
-      );
-    }
-
-    //filter by price range
-    filteredData = filteredData?.filter(
-      (item) => item.discountedPrice < rangePrice
-    );
-
-    //filter by rating
-    filteredData = filteredData?.filter((item) => item.rating >= rating);
-
-    //sort by price
-    filteredData =
-      sortType === 2
-        ? filteredData.sort((a, b) => b.discountedPrice - a.discountedPrice)
-        : filteredData.sort((a, b) => a.discountedPrice - b.discountedPrice);
-    console.log("filtereddata", filteredData);
-    dispatch({ type: "SET_FILTERED_DATA", payload: filteredData });
-  };
-
   const handleClearFilter = () => {
     state.filteredData = state.productData;
   };
 
   useEffect(() => {
+    const applyFilters = () => {
+      let filteredData = state.productData;
+
+      //filter by category
+      const categoriesChecked = category
+        .filter((item) => item.checked)
+        .map((item) => item.label.toLowerCase());
+
+      if (categoriesChecked.length) {
+        filteredData = filteredData?.filter((item) =>
+          categoriesChecked.includes(item.categoryName)
+        );
+      }
+
+      //filter by price range
+      filteredData = filteredData?.filter(
+        (item) => item.discountedPrice < rangePrice
+      );
+
+      //filter by rating
+      filteredData = filteredData?.filter((item) => item.rating >= rating);
+
+      //sort by price
+      filteredData =
+        sortType === 2
+          ? filteredData.sort((a, b) => b.discountedPrice - a.discountedPrice)
+          : filteredData.sort((a, b) => a.discountedPrice - b.discountedPrice);
+
+      dispatch({ type: "SET_FILTERED_DATA", payload: filteredData });
+    };
     applyFilters();
-  }, [category, rangePrice, sortType, rating]);
+  }, [category, dispatch, rangePrice, rating, sortType, state.productData]);
 
   return (
     <aside className="side_bar">
@@ -125,7 +124,7 @@ const ProductFilter = () => {
           <h3>Rating</h3>
           {filterByRatingsDB.map((item) => {
             return (
-              <div className="checkbox-container">
+              <div className="checkbox-container" key={item.id}>
                 <input
                   className="checkbox"
                   type="radio"

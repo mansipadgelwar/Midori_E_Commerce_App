@@ -1,12 +1,8 @@
 import { ProductFilter, VerticalCard } from "../../components";
-import { useEffect } from "react";
 import { useDataLayer } from "../../context";
 
 const ProductListing = () => {
-  const { getListOfProducts, state, searchTerm } = useDataLayer();
-  useEffect(() => {
-    getListOfProducts();
-  }, []);
+  const { state, searchTerm } = useDataLayer();
 
   return (
     <div className="documentation-container">
