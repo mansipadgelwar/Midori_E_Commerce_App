@@ -1,11 +1,12 @@
-import { NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context";
+import { NavLink, Link, useNavigate } from "react-router-dom";
+import { useAuth, useDataLayer } from "../../context";
 import { useToast } from "../../custom-hooks/useToast";
 
 const NavBar = () => {
   const { isAuthorized, authDispatch } = useAuth();
   const navigate = useNavigate();
   const { showToast } = useToast();
+  const { setSearchTerm, searchTerm } = useDataLayer();
 
   const logoutUser = () => {
     showToast("Logout Successful", "success");
@@ -25,13 +26,17 @@ const NavBar = () => {
         </div>
         <div className="input-icon icons-left">
           <span className="material-icons">search</span>
-          <input
-            className="input"
-            type="text"
-            id="search-bar"
-            name="search-bar"
-            placeholder="search"
-          />
+          <Link to="/productListing">
+            <input
+              className="input"
+              type="text"
+              id="search-bar"
+              name="search-bar"
+              placeholder="search"
+              onChange={(event) => setSearchTerm(event.target.value)}
+              value={searchTerm}
+            />
+          </Link>
         </div>
         <div className="sub-menu">
           {isAuthorized ? (

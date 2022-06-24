@@ -22,7 +22,6 @@ const AuthProvider = ({ children }) => {
   const { showToast } = useToast();
   const [authState, authDispatch] = useReducer(authReducer, setAuthState());
   const loginUser = async (email, password) => {
-    console.log(email, password);
     try {
       const { data, status } = await userLoginService(email, password);
       if (status === 200) {
