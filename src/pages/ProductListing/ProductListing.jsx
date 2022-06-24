@@ -11,7 +11,9 @@ const ProductListing = () => {
         <main className="main-body">
           <div className="main-body-heading">
             Showing All Products
-            <span className="main-body-sub-heading">(Showing 20 products)</span>
+            <span className="main-body-sub-heading">
+              (Showing {state.filteredData.length} products)
+            </span>
           </div>
           <section className="mywishlist-land-page">
             {state.filteredData.map((product) => {
