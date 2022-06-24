@@ -26,10 +26,15 @@ const ProductFilter = () => {
     setRating,
     searchTerm,
     handlChangeChecked,
+    setCategory,
+    initialCategoryState,
   } = useDataLayer();
 
   const handleClearFilter = () => {
-    state.filteredData = state.productData;
+    setRating();
+    setSortType();
+    setRangePrice(1000);
+    setCategory(initialCategoryState);
   };
 
   useEffect(() => {

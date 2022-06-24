@@ -18,16 +18,18 @@ import { useToast } from "../../custom-hooks/useToast";
 
 const DataLayerContext = createContext();
 
+const initialCategoryState = [
+  { id: 1, checked: false, label: "Climbers" },
+  { id: 2, checked: false, label: "Indoor" },
+  { id: 3, checked: false, label: "Cacti" },
+  { id: 4, checked: false, label: "Flowering" },
+];
+
 const DataLayerProvider = ({ children }) => {
   const { authToken } = useAuth();
   const { showToast } = useToast();
   const [searchTerm, setSearchTerm] = useState(" ");
-  const [category, setCategory] = useState([
-    { id: 1, checked: false, label: "Climbers" },
-    { id: 2, checked: false, label: "Indoor" },
-    { id: 3, checked: false, label: "Cacti" },
-    { id: 4, checked: false, label: "Flowering" },
-  ]);
+  const [category, setCategory] = useState(initialCategoryState);
   const [rangePrice, setRangePrice] = useState(1000);
   const [rating, setRating] = useState();
   const [sortType, setSortType] = useState();
@@ -173,6 +175,7 @@ const DataLayerProvider = ({ children }) => {
         rating,
         setRating,
         handlChangeChecked,
+        initialCategoryState,
       }}
     >
       {children}
