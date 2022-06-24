@@ -2,6 +2,11 @@ import { useState, useEffect } from "react";
 import "./ProductFilter.css";
 import { useDataLayer } from "../../context";
 
+const sortByPriceDB = [
+  { id: 1, label: "Low to High" },
+  { id: 2, label: "High to Low" },
+];
+
 const ProductFilter = () => {
   const {
     state,
@@ -43,7 +48,7 @@ const ProductFilter = () => {
 
     //sort by price
     filteredData =
-      sortType === 1
+      sortType === 2
         ? filteredData.sort((a, b) => b.discountedPrice - a.discountedPrice)
         : filteredData.sort((a, b) => a.discountedPrice - b.discountedPrice);
 
@@ -52,7 +57,7 @@ const ProductFilter = () => {
 
   useEffect(() => {
     applyFilters();
-  }, [category, rangePrice]);
+  }, [category, rangePrice, sortType]);
 
   return (
     <aside className="side_bar">
@@ -148,7 +153,7 @@ const ProductFilter = () => {
         </div>
         <div>
           <h3>Sort by</h3>
-          {sortType.map((item) => {
+          {sortByPriceDB.map((item) => {
             return (
               <div className="checkbox-container" key={item.id}>
                 <input
@@ -156,7 +161,7 @@ const ProductFilter = () => {
                   type="radio"
                   name="price"
                   id={item.id}
-                  onChange={() => setSortType(sortType)}
+                  onChange={() => setSortType(item.id)}
                   value={sortType}
                 />
                 <label htmlFor="low-to-high" className="checkbox-detail">

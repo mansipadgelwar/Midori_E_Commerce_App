@@ -35,10 +35,7 @@ const DataLayerProvider = ({ children }) => {
     { id: 3, checked: false, label: "Cacti" },
     { id: 4, checked: false, label: "Flowering" },
   ]);
-  const [sortType, setSortType] = useState([
-    { id: 1, label: "Low to High" },
-    { id: 2, label: "High to Low" },
-  ]);
+  const [sortType, setSortType] = useState();
 
   const storeDataReducer = (state, action) => {
     switch (action.type) {
