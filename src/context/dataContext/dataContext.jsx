@@ -29,12 +29,7 @@ const DataLayerProvider = ({ children }) => {
     { id: 4, checked: false, label: "Flowering" },
   ]);
   const [rangePrice, setRangePrice] = useState(1000);
-  const [rating, setRating] = useState([
-    { id: 1, checked: false, label: "Climbers" },
-    { id: 2, checked: false, label: "Indoor" },
-    { id: 3, checked: false, label: "Cacti" },
-    { id: 4, checked: false, label: "Flowering" },
-  ]);
+  const [rating, setRating] = useState();
   const [sortType, setSortType] = useState();
 
   const storeDataReducer = (state, action) => {
@@ -167,6 +162,8 @@ const DataLayerProvider = ({ children }) => {
         setRangePrice,
         sortType,
         setSortType,
+        rating,
+        setRating,
       }}
     >
       {children}

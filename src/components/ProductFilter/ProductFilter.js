@@ -7,6 +7,12 @@ const sortByPriceDB = [
   { id: 2, label: "High to Low" },
 ];
 
+const filterByRatingsDB = [
+  { id: 4, label: "4 Stars & above" },
+  { id: 3, label: "3 Stars & above" },
+  { id: 2, label: "2 Stars & above" },
+  { id: 1, label: "1 Stars & above" },
+];
 const ProductFilter = () => {
   const {
     state,
@@ -17,6 +23,8 @@ const ProductFilter = () => {
     setCategory,
     sortType,
     setSortType,
+    rating,
+    setRating,
   } = useDataLayer();
 
   const handlChangeChecked = (id) => {
@@ -46,18 +54,21 @@ const ProductFilter = () => {
       (item) => item.discountedPrice < rangePrice
     );
 
+    //filter by rating
+    filteredData = filteredData?.filter((item) => item.rating >= rating);
+
     //sort by price
     filteredData =
       sortType === 2
         ? filteredData.sort((a, b) => b.discountedPrice - a.discountedPrice)
         : filteredData.sort((a, b) => a.discountedPrice - b.discountedPrice);
-
+    console.log("filtereddata", filteredData);
     dispatch({ type: "SET_FILTERED_DATA", payload: filteredData });
   };
 
   useEffect(() => {
     applyFilters();
-  }, [category, rangePrice, sortType]);
+  }, [category, rangePrice, sortType, rating]);
 
   return (
     <aside className="side_bar">
@@ -106,50 +117,23 @@ const ProductFilter = () => {
         </div>
         <div>
           <h3>Rating</h3>
-          <div className="checkbox-container">
-            <input
-              className="checkbox"
-              type="radio"
-              name="star"
-              id="four-star"
-            />
-            <label htmlFor="four-star" className="checkbox-detail">
-              4 Stars & above
-            </label>
-          </div>
-          <div className="checkbox-container">
-            <input
-              className="checkbox"
-              type="radio"
-              name="star"
-              id="three-star"
-            />
-            <label htmlFor="three-star" className="checkbox-detail">
-              3 Stars & above
-            </label>
-          </div>
-          <div className="checkbox-container">
-            <input
-              className="checkbox"
-              type="radio"
-              name="star"
-              id="two-star"
-            />
-            <label htmlFor="two-star" className="checkbox-detail">
-              2 Stars & above
-            </label>
-          </div>
-          <div className="checkbox-container">
-            <input
-              className="checkbox"
-              type="radio"
-              name="star"
-              id="one-star"
-            />
-            <label htmlFor="one-star" className="checkbox-detail">
-              1 Star & above
-            </label>
-          </div>
+          {filterByRatingsDB.map((item) => {
+            return (
+              <div className="checkbox-container">
+                <input
+                  className="checkbox"
+                  type="radio"
+                  name="star"
+                  id={item.id}
+                  onChange={() => setRating(item.id)}
+                  value={rating}
+                />
+                <label htmlFor={item.id} className="checkbox-detail">
+                  {item.label}
+                </label>
+              </div>
+            );
+          })}
         </div>
         <div>
           <h3>Sort by</h3>
