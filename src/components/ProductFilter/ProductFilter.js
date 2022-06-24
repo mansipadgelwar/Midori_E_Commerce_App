@@ -20,21 +20,13 @@ const ProductFilter = () => {
     rangePrice,
     setRangePrice,
     category,
-    setCategory,
     sortType,
     setSortType,
     rating,
     setRating,
     searchTerm,
+    handlChangeChecked,
   } = useDataLayer();
-
-  const handlChangeChecked = (id) => {
-    const categoryStateList = category;
-    const changeCheckedCategory = categoryStateList.map((item) =>
-      item.id === id ? { ...item, checked: !item.checked } : item
-    );
-    setCategory(changeCheckedCategory);
-  };
 
   const handleClearFilter = () => {
     state.filteredData = state.productData;

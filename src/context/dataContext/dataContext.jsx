@@ -51,6 +51,14 @@ const DataLayerProvider = ({ children }) => {
     }
   };
 
+  const handlChangeChecked = (id) => {
+    const categoryStateList = category;
+    const changeCheckedCategory = categoryStateList.map((item) =>
+      item.id === id ? { ...item, checked: !item.checked } : item
+    );
+    setCategory(changeCheckedCategory);
+  };
+
   const getWishlistedItems = async () => {
     try {
       let {
@@ -164,6 +172,7 @@ const DataLayerProvider = ({ children }) => {
         setSortType,
         rating,
         setRating,
+        handlChangeChecked,
       }}
     >
       {children}

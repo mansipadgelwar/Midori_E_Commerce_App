@@ -1,8 +1,25 @@
 import { Footer } from "../../components";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDataLayer } from "../../context";
 
 const Home = () => {
   const currentLocation = useNavigate();
+  const { setCategory } = useDataLayer();
+
+  const handleShowDataByCategory = (id) => {
+    const initialCategoryList = [
+      { id: 1, checked: false, label: "Climbers" },
+      { id: 2, checked: false, label: "Indoor" },
+      { id: 3, checked: false, label: "Cacti" },
+      { id: 4, checked: false, label: "Flowering" },
+    ];
+    const categoryStateList = initialCategoryList;
+    const changeCheckedCategory = categoryStateList.map((item) =>
+      item.id === id ? { ...item, checked: !item.checked } : item
+    );
+    setCategory(changeCheckedCategory);
+  };
+
   return (
     <div>
       <section className="main-content-page">
@@ -13,12 +30,13 @@ const Home = () => {
               alt="plant"
               className="img card-image"
             />
-            <Link
+            <NavLink
               to="/productlisting"
               className="category-text-overlay text-bold"
+              onClick={() => handleShowDataByCategory(2)}
             >
               Indoor Plants
-            </Link>
+            </NavLink>
           </article>
 
           <article className="category">
@@ -27,12 +45,13 @@ const Home = () => {
               alt="plant"
               className="img card-image"
             />
-            <Link
+            <NavLink
               to="/productlisting"
               className="category-text-overlay text-bold"
+              onClick={() => handleShowDataByCategory(4)}
             >
               Flowering Plants
-            </Link>
+            </NavLink>
           </article>
 
           <article className="category">
@@ -41,12 +60,13 @@ const Home = () => {
               alt="plant"
               className="img card-image"
             />
-            <Link
+            <NavLink
               to="/productlisting"
               className="category-text-overlay text-bold"
+              onClick={() => handleShowDataByCategory(3)}
             >
-              Outdoor Plants
-            </Link>
+              Cacti
+            </NavLink>
           </article>
         </div>
 
