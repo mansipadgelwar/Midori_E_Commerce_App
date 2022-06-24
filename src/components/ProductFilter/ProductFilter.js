@@ -66,6 +66,10 @@ const ProductFilter = () => {
     dispatch({ type: "SET_FILTERED_DATA", payload: filteredData });
   };
 
+  const handleClearFilter = () => {
+    state.filteredData = state.productData;
+  };
+
   useEffect(() => {
     applyFilters();
   }, [category, rangePrice, sortType, rating]);
@@ -75,7 +79,9 @@ const ProductFilter = () => {
       <div className="sidebar_menu">
         <div className="filter-heading">
           <p>Filters</p>
-          <button className="btn btn-text">Clear</button>
+          <button className="btn btn-text" onClick={() => handleClearFilter()}>
+            Clear
+          </button>
         </div>
         <div>
           <h3>Range</h3>
