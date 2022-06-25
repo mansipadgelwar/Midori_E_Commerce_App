@@ -1,21 +1,10 @@
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useAuth, useDataLayer } from "../../context";
-import { useToast } from "../../custom-hooks/useToast";
 import "./NavBar.css";
 
 const NavBar = () => {
-  const { isAuthorized, authDispatch } = useAuth();
-  const navigate = useNavigate();
-  const { showToast } = useToast();
+  const { isAuthorized } = useAuth();
   const { setSearchTerm, searchTerm, state } = useDataLayer();
-
-  const logoutUser = () => {
-    showToast("Logout Successful", "success");
-    authDispatch({ type: "RESET_AUTH" });
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    navigate("/logout");
-  };
 
   return (
     <header className="header">
@@ -41,9 +30,9 @@ const NavBar = () => {
         </div>
         <div className="sub-menu">
           {isAuthorized ? (
-            <button className="btn btn-cta" onClick={logoutUser}>
-              Logout
-            </button>
+            <NavLink to="/profile" className="sub-menu btn-link">
+              <span class="material-icons">person</span>
+            </NavLink>
           ) : (
             <NavLink to="/login" className="sub-menu">
               <button className="btn btn-cta">Login</button>
