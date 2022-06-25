@@ -31,7 +31,7 @@ const NavBar = () => {
         <div className="sub-menu">
           {isAuthorized ? (
             <NavLink to="/profile" className="sub-menu btn-link">
-              <span class="material-icons">person</span>
+              <span className="material-icons">person</span>
             </NavLink>
           ) : (
             <NavLink to="/login" className="sub-menu">

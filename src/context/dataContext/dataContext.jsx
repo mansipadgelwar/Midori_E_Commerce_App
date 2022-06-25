@@ -136,10 +136,7 @@ const DataLayerProvider = ({ children }) => {
         type: "GET_CART_DATA",
         payload: cart,
       });
-      showToast(
-        isInCart ? "Product removed from cart" : "Product added to cart",
-        "success"
-      );
+      showToast(!isInCart && "Product added to cart", "success");
     } catch (error) {
       showToast("Cart error", "error");
     }
