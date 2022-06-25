@@ -1,5 +1,6 @@
 import "./CartPrice.css";
 import { useDataLayer } from "../../context";
+import { Link } from "react-router-dom";
 
 const CartPrice = () => {
   const { state } = useDataLayer();
@@ -45,7 +46,9 @@ const CartPrice = () => {
         </div>
       </div>
       <div className="button-container">
-        <button className="btn btn-cta">PLACE ORDER</button>
+        <Link to="/checkout">
+          <button className="btn btn-cta">PLACE ORDER</button>
+        </Link>
       </div>
     </article>
   );
