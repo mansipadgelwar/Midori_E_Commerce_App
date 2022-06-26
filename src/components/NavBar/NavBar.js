@@ -1,20 +1,10 @@
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useAuth, useDataLayer } from "../../context";
-import { useToast } from "../../custom-hooks/useToast";
+import "./NavBar.css";
 
 const NavBar = () => {
-  const { isAuthorized, authDispatch } = useAuth();
-  const navigate = useNavigate();
-  const { showToast } = useToast();
-  const { setSearchTerm, searchTerm } = useDataLayer();
-
-  const logoutUser = () => {
-    showToast("Logout Successful", "success");
-    authDispatch({ type: "RESET_AUTH" });
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    navigate("/logout");
-  };
+  const { isAuthorized } = useAuth();
+  const { setSearchTerm, searchTerm, state } = useDataLayer();
 
   return (
     <header className="header">
@@ -40,9 +30,9 @@ const NavBar = () => {
         </div>
         <div className="sub-menu">
           {isAuthorized ? (
-            <button className="btn btn-cta" onClick={logoutUser}>
-              Logout
-            </button>
+            <NavLink to="/profile" className="sub-menu btn-link">
+              <span className="material-icons">person</span>
+            </NavLink>
           ) : (
             <NavLink to="/login" className="sub-menu">
               <button className="btn btn-cta">Login</button>
@@ -51,12 +41,30 @@ const NavBar = () => {
 
           <div className="header-icon">
             <NavLink className="btn-link" to="/mycart">
-              <span className="material-icons">shopping_cart</span>
+              <div className="badge">
+                <span className="material-icons">shopping_cart</span>
+                {state.cartData.length > 0 ? (
+                  <span className="badge-icon notification">
+                    {state.cartData.length}
+                  </span>
+                ) : (
+                  ""
+                )}
+              </div>
             </NavLink>
           </div>
           <div className="header-icon">
             <NavLink className="btn-link" to="/mywishlist">
-              <span className="material-icons">favorite_border</span>
+              <div className="badge">
+                <span className="material-icons">favorite_border</span>
+                {state.wishlistData.length > 0 ? (
+                  <span className="badge-icon notification">
+                    {state.wishlistData.length}
+                  </span>
+                ) : (
+                  ""
+                )}
+              </div>
             </NavLink>
           </div>
         </div>

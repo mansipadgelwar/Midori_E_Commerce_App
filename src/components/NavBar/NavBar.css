@@ -1,0 +1,18 @@
+.sub-menu .header-icon {
+  padding: 0 1rem;
+}
+
+.sub-menu {
+  text-decoration: none;
+}
+
+.notification {
+  border: 1px solid var(--vanilla);
+  background-color: var(--primary-color);
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* .badge {
+  
+} */

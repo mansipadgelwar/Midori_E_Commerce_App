@@ -18,21 +18,60 @@ import { useToast } from "../../custom-hooks/useToast";
 
 const DataLayerContext = createContext();
 
+const initialCategoryState = [
+  { id: 1, checked: false, label: "Climbers" },
+  { id: 2, checked: false, label: "Indoor" },
+  { id: 3, checked: false, label: "Cacti" },
+  { id: 4, checked: false, label: "Flowering" },
+];
+
 const DataLayerProvider = ({ children }) => {
   const { authToken } = useAuth();
   const { showToast } = useToast();
   const [searchTerm, setSearchTerm] = useState(" ");
+  const [category, setCategory] = useState(initialCategoryState);
+  const [rangePrice, setRangePrice] = useState(1000);
+  const [rating, setRating] = useState();
+  const [sortType, setSortType] = useState();
 
   const storeDataReducer = (state, action) => {
     switch (action.type) {
       case "GET_WISHLIST_DATA":
         return { ...state, wishlistData: [...action.payload] };
       case "GET_PRODUCT_DATA":
-        return { ...state, productData: [...action.payload] };
+        return {
+          ...state,
+          productData: [...action.payload],
+          filteredData: [...action.payload],
+        };
       case "GET_CART_DATA":
         return { ...state, cartData: [...action.payload] };
+      case "SET_FILTERED_DATA":
+        return { ...state, filteredData: [...action.payload] };
       default:
         return state;
+    }
+  };
+
+  const handlChangeChecked = (id) => {
+    const categoryStateList = category;
+    const changeCheckedCategory = categoryStateList.map((item) =>
+      item.id === id ? { ...item, checked: !item.checked } : item
+    );
+    setCategory(changeCheckedCategory);
+  };
+
+  const getWishlistedItems = async () => {
+    try {
+      let {
+        data: { wishlist },
+      } = await getAllItemsOfWishlist(authToken);
+      dispatch({
+        type: "GET_WISHLIST_DATA",
+        payload: wishlist,
+      });
+    } catch (error) {
+      console.error("get wishlist item error", error);
     }
   };
 
@@ -47,20 +86,6 @@ const DataLayerProvider = ({ children }) => {
       }
     } catch (error) {
       showToast("Product list error", "error");
-    }
-  };
-
-  const getWishlistedItems = async () => {
-    try {
-      let {
-        data: { wishlist },
-      } = await getAllItemsOfWishlist(authToken);
-      dispatch({
-        type: "GET_WISHLIST_DATA",
-        payload: wishlist,
-      });
-    } catch (error) {
-      console.error("get wishlist item error", error);
     }
   };
 
@@ -111,10 +136,7 @@ const DataLayerProvider = ({ children }) => {
         type: "GET_CART_DATA",
         payload: cart,
       });
-      showToast(
-        isInCart ? "Product removed from cart" : "Product added to cart",
-        "success"
-      );
+      showToast(!isInCart && "Product added to cart", "success");
     } catch (error) {
       showToast("Cart error", "error");
     }
@@ -124,22 +146,33 @@ const DataLayerProvider = ({ children }) => {
     productData: [],
     wishlistData: [],
     cartData: [],
+    filteredData: [],
   });
 
   useEffect(() => {
+    getListOfProducts();
     getWishlistedItems();
   }, []);
 
   return (
     <DataLayerContext.Provider
       value={{
-        getListOfProducts,
         addToWishlist,
         state,
         dispatch,
         handleAddToCart,
         setSearchTerm,
         searchTerm,
+        category,
+        setCategory,
+        rangePrice,
+        setRangePrice,
+        sortType,
+        setSortType,
+        rating,
+        setRating,
+        handlChangeChecked,
+        initialCategoryState,
       }}
     >
       {children}

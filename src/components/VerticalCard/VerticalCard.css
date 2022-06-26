@@ -18,3 +18,8 @@
   background-color: transparent;
   border: none;
 }
+
+.product-sub-heading {
+  display: flex;
+  justify-content: space-around;
+}

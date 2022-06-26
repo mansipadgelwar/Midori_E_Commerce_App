@@ -1,16 +1,41 @@
 import { Footer, CartPrice, CartCard } from "../../components";
 import { useDataLayer } from "../../context";
 import "./MyCart.css";
+import { Link } from "react-router-dom";
+import { EmptyBasket } from "../../asset";
 
 const MyCart = () => {
   const { state } = useDataLayer();
   return (
     <div>
       <div className="mycart-container">
-        {state.cartData.map((product) => {
-          return <CartCard product={product} key={product._id} />;
-        })}
-        <CartPrice />
+        {state.cartData.length > 0 ? (
+          <>
+            {state.cartData.map((product) => {
+              return <CartCard product={product} key={product._id} />;
+            })}
+            <CartPrice />
+          </>
+        ) : (
+          <div className="authentication-page">
+            <div className="logout-content">
+              <h3 className="h3 ">Hey, it feels so light!</h3>
+              <h4 className="gray-text content-heading">
+                There is nothing in your cart. Let's add some items.
+              </h4>
+              <div className="ecom-image-container">
+                <img
+                  src={EmptyBasket}
+                  alt="empty-basket"
+                  className="img-responsive"
+                />
+              </div>
+              <Link to="/mywishlist" className="btn btn-cta btn-link">
+                Add from wishlist
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
       <Footer />
     </div>

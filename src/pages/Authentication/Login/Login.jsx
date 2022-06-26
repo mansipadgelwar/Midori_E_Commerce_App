@@ -24,7 +24,7 @@ const Login = () => {
   }
 
   if (isAuthorized) {
-    currentLocation("/home");
+    currentLocation("/");
   }
 
   return (

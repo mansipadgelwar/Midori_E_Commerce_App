@@ -1,8 +1,10 @@
 import "./CartPrice.css";
 import { useDataLayer } from "../../context";
+import { useNavigate } from "react-router-dom";
 
 const CartPrice = () => {
-  const { state } = useDataLayer();
+  const { state, handleAddToCart } = useDataLayer();
+  const currentLocation = useNavigate();
 
   const result = state.cartData.reduce(
     (acc, product) => {
@@ -16,6 +18,12 @@ const CartPrice = () => {
   );
 
   const deliveryCharges = 50 * Number(state.cartData.length);
+
+  const handlePlaceOrder = (event) => {
+    event.preventDefault();
+    state.cartData.map((item) => handleAddToCart(event, item));
+    currentLocation("/checkout");
+  };
 
   return (
     <article className="mycart vertical-card text-only-card">
@@ -45,7 +53,12 @@ const CartPrice = () => {
         </div>
       </div>
       <div className="button-container">
-        <button className="btn btn-cta">PLACE ORDER</button>
+        <button
+          className="btn btn-cta"
+          onClick={(event) => handlePlaceOrder(event)}
+        >
+          PLACE ORDER
+        </button>
       </div>
     </article>
   );

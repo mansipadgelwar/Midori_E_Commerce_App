@@ -7,6 +7,8 @@ import {
   Login,
   Logout,
   Signup,
+  Checkout,
+  Profile,
 } from "./pages";
 import { Route, Routes } from "react-router-dom";
 import { NavBar } from "./components";
@@ -22,6 +24,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </div>
   );

@@ -31,10 +31,18 @@ const VerticalCard = ({ product }) => {
       </div>
       <div className="product-description">
         <h3 className="product-main-heading">{product.name}</h3>
-        <p className="product-sub-heading">
-          ₹{product.actualPrice}
-          <span className="product-discount">({product.discount})</span>
-        </p>
+        <div className="product-sub-heading">
+          <p>
+            ₹{product.discountedPrice}
+            <span className="product-discount">({product.discount})</span>
+          </p>
+          <div class="rating-container">
+            <div class="rating-number">{product.rating}</div>
+            <div class="rating-icon">
+              <span class="material-icons">star</span>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="button-container">
         {isInCart ? (
