@@ -1,5 +1,5 @@
 .sub-menu .header-icon {
-  padding: 0 1rem;
+  padding: 0 0.8rem;
 }
 
 .sub-menu {
@@ -13,6 +13,29 @@
   height: 1.2rem;
 }
 
-/* .badge {
-  
-} */
+.simple-header > .header {
+  position: fixed;
+  height: 10vh;
+  width: 100%;
+  min-width: 0;
+  border: none;
+  box-shadow: var(--btn-box-shadow);
+  z-index: 7;
+  top: 0;
+  left: 0;
+  background-color: var(--white);
+  overflow: auto;
+}
+
+.header-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 567px) {
+  #search-bar {
+    max-width: 10rem;
+    width: 100%;
+  }
+}

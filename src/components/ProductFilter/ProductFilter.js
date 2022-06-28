@@ -84,7 +84,7 @@ const ProductFilter = () => {
   }, [rating, rangePrice, category, sortType, searchTerm]);
 
   return (
-    <aside className="side_bar">
+    <aside className="side_bar mobile-hide">
       <div className="sidebar_menu">
         <div className="filter-heading">
           <p>Filters</p>

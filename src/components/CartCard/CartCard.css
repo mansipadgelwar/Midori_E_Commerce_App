@@ -11,14 +11,20 @@
   position: relative;
 }
 
-.ss-image {
+.sub-section-container > .image-container {
+  max-width: 12rem;
+  padding: 1rem;
+  max-height: 15rem;
+}
+
+/* .ss-image {
   display: block;
   object-fit: cover;
   max-width: 11rem;
   width: 100%;
   height: auto;
   margin: 1rem 0 1rem 1rem;
-}
+} */
 
 .mycart-description {
   display: flex;
