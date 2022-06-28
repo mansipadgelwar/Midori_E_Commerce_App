@@ -10,12 +10,12 @@ const MyCart = () => {
     <div>
       <div className="mycart-container">
         {state.cartData.length > 0 ? (
-          <>
+          <div className="horizontal-card-container">
             {state.cartData.map((product) => {
               return <CartCard product={product} key={product._id} />;
             })}
             <CartPrice />
-          </>
+          </div>
         ) : (
           <div className="authentication-page">
             <div className="logout-content">
