@@ -19,10 +19,10 @@ import { useToast } from "../../custom-hooks/useToast";
 const DataLayerContext = createContext();
 
 const initialCategoryState = [
-  { id: 1, checked: false, label: "Climbers" },
-  { id: 2, checked: false, label: "Indoor" },
-  { id: 3, checked: false, label: "Cacti" },
-  { id: 4, checked: false, label: "Flowering" },
+  { id: "Climbers", checked: false, label: "Climbers" },
+  { id: "Indoor", checked: false, label: "Indoor" },
+  { id: "Cacti", checked: false, label: "Cacti" },
+  { id: "Flowering", checked: false, label: "Flowering" },
 ];
 
 const DataLayerProvider = ({ children }) => {
