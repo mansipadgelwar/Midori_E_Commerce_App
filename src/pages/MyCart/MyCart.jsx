@@ -39,7 +39,6 @@ const MyCart = () => {
           </div>
         )}
       </div>
-      <Footer />
     </div>
   );
 };
