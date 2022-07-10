@@ -62,11 +62,11 @@ const CartCard = ({ product }) => {
 
   return (
     <article className="sub-section-container">
-      <div className="sub-section-image">
+      <div class="image-container">
         <img
           src={product.image}
           alt={product.name}
-          className="img-responsive ss-image"
+          className="img-responsive"
         />
       </div>
       <div className="mycart-description">

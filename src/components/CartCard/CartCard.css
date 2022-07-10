@@ -11,13 +11,16 @@
   position: relative;
 }
 
-.ss-image {
-  display: block;
-  object-fit: cover;
-  max-width: 11rem;
+.sub-section-container > .image-container {
+  max-width: 12rem;
   width: 100%;
-  height: auto;
-  margin: 1rem 0 1rem 1rem;
+  padding: 1rem;
+  max-height: 15rem;
+  object-fit: cover;
+}
+
+.sub-section-container .img-responsive {
+  height: 100%;
 }
 
 .mycart-description {
@@ -54,4 +57,8 @@
 .sub-section-container .btn {
   margin: 0;
   font-size: 0.8rem;
+}
+
+.material-icons {
+  cursor: pointer;
 }

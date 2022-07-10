@@ -6,9 +6,13 @@ const MyWishlist = () => {
   const { state } = useDataLayer();
   return (
     <div>
-      <h3 className="h3 center-text">My Wishlist</h3>
       {state.wishlistData.length > 0 ? (
-        <section className="mywishlist-land-page">
+        <h3 className="h3 center-text wishlist-page-heading">My Wishlist</h3>
+      ) : (
+        ""
+      )}
+      {state.wishlistData.length > 0 ? (
+        <section className="wishlist-page">
           {state.wishlistData.map((element) => {
             return <VerticalCard product={element} key={element._id} />;
           })}

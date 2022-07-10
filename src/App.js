@@ -11,7 +11,7 @@ import {
   Profile,
 } from "./pages";
 import { Route, Routes } from "react-router-dom";
-import { NavBar } from "./components";
+import { NavBar, Footer } from "./components";
 function App() {
   return (
     <div className="App">
@@ -27,6 +27,7 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

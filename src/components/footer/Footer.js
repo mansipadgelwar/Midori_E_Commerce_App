@@ -50,7 +50,7 @@ const Footer = () => {
           If you'd like to get in touch please send us a message during regular
           business hours.
         </p>
-        <p className="email-details h4"> midori@gmail.com</p>
+        <p className="email-details h4 text-bold"> midori@gmail.com</p>
       </div>
     </footer>
   );

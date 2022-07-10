@@ -11,9 +11,11 @@ const MyCart = () => {
       <div className="mycart-container">
         {state.cartData.length > 0 ? (
           <>
-            {state.cartData.map((product) => {
-              return <CartCard product={product} key={product._id} />;
-            })}
+            <div className="horizontal-card-container">
+              {state.cartData.map((product) => {
+                return <CartCard product={product} key={product._id} />;
+              })}
+            </div>
             <CartPrice />
           </>
         ) : (
@@ -37,7 +39,6 @@ const MyCart = () => {
           </div>
         )}
       </div>
-      <Footer />
     </div>
   );
 };
