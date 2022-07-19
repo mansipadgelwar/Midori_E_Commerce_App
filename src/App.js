@@ -9,13 +9,15 @@ import {
   Signup,
   Checkout,
   Profile,
+  Address,
+  OrderSummary,
+  NotFound,
 } from "./pages";
 import { Route, Routes } from "react-router-dom";
-import { NavBar, Footer } from "./components";
+
 function App() {
   return (
     <div className="App">
-      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/productlisting" element={<ProductListing />} />
@@ -26,8 +28,10 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/address" element={<Address />} />
+        <Route path="/ordersummary" element={<OrderSummary />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer />
     </div>
   );
 }

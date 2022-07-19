@@ -36,10 +36,10 @@ const VerticalCard = ({ product }) => {
             ₹{product.discountedPrice}
             <span className="product-discount">({product.discount})</span>
           </p>
-          <div class="rating-container">
-            <div class="rating-number">{product.rating}</div>
-            <div class="rating-icon">
-              <span class="material-icons">star</span>
+          <div className="rating-container">
+            <div className="rating-number">{product.rating}</div>
+            <div className="rating-icon">
+              <span className="material-icons">star</span>
             </div>
           </div>
         </div>

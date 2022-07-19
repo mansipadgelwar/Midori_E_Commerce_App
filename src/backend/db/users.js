@@ -15,5 +15,17 @@ export const users = [
     password: "Mansi123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    address: [
+      {
+        _id: uuid(),
+        name: "Mansi Padgelwar",
+        mobile: "9111345567",
+        address: "66 /ground Floor C Kapol Niwas Carpenter Street Girgaon",
+        pincode: "440001",
+        locality: "Nagpur",
+        state: "Maharashtra",
+        tag: "Default",
+      },
+    ],
   },
 ];

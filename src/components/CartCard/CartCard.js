@@ -62,7 +62,7 @@ const CartCard = ({ product }) => {
 
   return (
     <article className="sub-section-container">
-      <div class="image-container">
+      <div className="image-container">
         <img
           src={product.image}
           alt={product.name}
@@ -78,8 +78,10 @@ const CartCard = ({ product }) => {
           <button
             className="btn btn-primary-outline"
             onClick={() =>
+              Number(product.qty) > 3 &&
               handleProductQuantityInCart(authToken, product._id, "decrease")
             }
+            disabled={Number(product.qty) > 3 ? false : true}
           >
             -
           </button>

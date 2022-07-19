@@ -7,3 +7,6 @@ export { Logout } from "./Authentication/Logout/Logout.jsx";
 export { Signup } from "./Authentication/Signup/Signup.jsx";
 export { Checkout } from "./Checkout/Checkout.jsx";
 export { Profile } from "./Profile/Profile";
+export { Address } from "./Address/Address.jsx";
+export { OrderSummary } from "./OrderSummary/OrderSummary.jsx";
+export { NotFound } from "./NotFound/NotFound.jsx";

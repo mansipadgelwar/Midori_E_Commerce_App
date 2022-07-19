@@ -3,3 +3,7 @@ export {
   useDataLayer,
   DataLayerProvider,
 } from "../context/dataContext/dataContext.jsx";
+export {
+  useAddressManagement,
+  AddressManagementProvider,
+} from "../context/addressManagementContext/addressManagementContext.jsx";

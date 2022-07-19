@@ -6,6 +6,7 @@ import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { AuthProvider, DataLayerProvider } from "./context";
+import { AddressManagementProvider } from "./context/addressManagementContext/addressManagementContext";
 
 // Call make Server
 makeServer();
@@ -15,8 +16,10 @@ ReactDOM.render(
     <Router>
       <AuthProvider>
         <DataLayerProvider>
-          <ToastContainer />
-          <App />
+          <AddressManagementProvider>
+            <ToastContainer />
+            <App />
+          </AddressManagementProvider>
         </DataLayerProvider>
       </AuthProvider>
     </Router>

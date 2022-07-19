@@ -1,0 +1,76 @@
+.menu-bar {
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-content-page {
+  max-width: 62.5rem;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.address-container {
+  display: flex;
+  flex-direction: row;
+  gap: 3.125rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.notes-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 31.875rem;
+  width: 100%;
+  border: 1px solid var(--hover-grey);
+  border-radius: 0.5rem;
+  gap: 1.25rem;
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+  max-height: 24rem;
+  background-color: var(--white);
+  box-shadow: var(--btn-box-shadow);
+}
+
+.notes-title-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.notes-container .notes-label-type {
+  border-radius: 0.3rem;
+  background-color: var(--hover-grey);
+  display: inline-block;
+  max-width: 17.5rem;
+  width: fit-content;
+  padding: 0.5rem;
+}
+
+.notes-label-container {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.address-page {
+  margin-top: 10vh;
+  padding: 1rem;
+}
+
+@media screen and (max-width: 567px) {
+  .menu-bar {
+    justify-content: space-around;
+  }
+
+  .notes-container {
+    min-width: 21rem;
+    width: 100%;
+    gap: 1rem;
+    height: 100%;
+  }
+}

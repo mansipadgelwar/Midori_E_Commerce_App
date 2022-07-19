@@ -1,10 +1,11 @@
-import { Footer } from "../../components";
+import { Footer, NavBar } from "../../components";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDataLayer } from "../../context";
+import { useEffect } from "react";
 
 const Home = () => {
   const currentLocation = useNavigate();
-  const { setCategory } = useDataLayer();
+  const { setCategory, getListOfProducts } = useDataLayer();
 
   const handleShowDataByCategory = (id) => {
     const initialCategoryList = [
@@ -20,8 +21,13 @@ const Home = () => {
     setCategory(changeCheckedCategory);
   };
 
+  useEffect(() => {
+    getListOfProducts();
+  }, []);
+
   return (
-    <div>
+    <>
+      <NavBar />
       <section className="main-content-page">
         <div className="three-box-section">
           <article className="category">
@@ -99,8 +105,11 @@ const Home = () => {
                 />
               </div>
               <div className="sub-section-description">
-                <h3>Planters on fleek</h3>
-                <p>There is a plant for every home and a planter.</p>
+                <h3>Planters on fleek.</h3>
+                <p>
+                  Even a small plant in your home can help remove 3+ household
+                  toxins commonly found indoors.
+                </p>
               </div>
             </div>
           </article>
@@ -115,14 +124,15 @@ const Home = () => {
                 />
               </div>
               <div className="sub-section-description">
-                <h3>Planters on fleek</h3>
+                <h3>Plants help make your house more beautiful.</h3>
                 <p>There is a plant for every home and a planter.</p>
               </div>
             </div>
           </article>
         </div>
       </section>
-    </div>
+      <Footer />
+    </>
   );
 };
 

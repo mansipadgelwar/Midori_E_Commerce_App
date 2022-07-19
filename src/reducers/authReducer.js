@@ -14,7 +14,7 @@ const authReducer = (authState, action) => {
     case ACTION_TYPE.RESET_AUTH:
       return initialAuthState;
     default:
-      console.error("Invalid auth ACTION_TYPE");
+      return authState;
   }
 };
 
