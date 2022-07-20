@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   ProductFilter,
   VerticalCard,
@@ -16,6 +16,10 @@ const ProductListing = () => {
   const handleClick = () => {
     setShow(true);
   };
+
+  useEffect(() => {
+    document.title = "Midori | Products";
+  }, []);
 
   return (
     <>

@@ -2,9 +2,15 @@ import { Footer, CartPrice, CartCard, NavBar } from "../../components";
 import { useDataLayer } from "../../context";
 import { Link } from "react-router-dom";
 import { EmptyBasket } from "../../asset";
+import { useEffect } from "react";
 
 const MyCart = () => {
   const { state } = useDataLayer();
+
+  useEffect(() => {
+    document.title = "Midori | MyCart";
+  }, []);
+
   return (
     <>
       <NavBar />

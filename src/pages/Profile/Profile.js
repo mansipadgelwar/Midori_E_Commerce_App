@@ -3,6 +3,7 @@ import "./Profile.css";
 import { useToast } from "../../custom-hooks/useToast";
 import { NavLink, useNavigate } from "react-router-dom";
 import { NavBar } from "../../components";
+import { useEffect } from "react";
 
 const Profile = () => {
   const { authUser, authDispatch } = useAuth();
@@ -18,6 +19,10 @@ const Profile = () => {
     dispatch({ type: "RESET_DATA" });
     navigate("/logout");
   };
+
+  useEffect(() => {
+    document.title = "Midori | Profile";
+  }, []);
 
   return (
     <>

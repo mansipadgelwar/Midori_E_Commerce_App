@@ -2,8 +2,13 @@ import { Link } from "react-router-dom";
 import { OrderPlaced } from "../../asset";
 import "./Checkout.css";
 import { Footer, NavBar } from "../../components";
+import { useEffect } from "react";
 
 const Checkout = () => {
+  useEffect(() => {
+    document.title = "Midori | Checkout";
+  }, []);
+
   return (
     <>
       <NavBar />

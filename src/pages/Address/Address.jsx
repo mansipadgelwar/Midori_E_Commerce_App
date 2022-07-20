@@ -1,6 +1,7 @@
 import "../Address/Address.css";
 import { AddressModal, NavBar } from "../../components";
 import { useAddressManagement } from "../../context";
+import { useEffect } from "react";
 
 const Address = () => {
   const {
@@ -9,6 +10,10 @@ const Address = () => {
     showAddressForm,
     setShowAddressForm,
   } = useAddressManagement();
+
+  useEffect(() => {
+    document.title = "Midori | Address";
+  }, []);
 
   return (
     <>
@@ -25,7 +30,7 @@ const Address = () => {
               className="btn btn-secondary btn-icon"
               onClick={() => setShowAddressForm(true)}
             >
-              <span class="material-icons">add</span>ADD NEW ADDRESS
+              <span className="material-icons">add</span>ADD NEW ADDRESS
             </button>
           </div>
         </div>

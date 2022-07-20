@@ -22,6 +22,10 @@ const Home = () => {
   };
 
   useEffect(() => {
+    document.title = "Midori | Home";
+  }, []);
+
+  useEffect(() => {
     getListOfProducts();
   }, []);
 

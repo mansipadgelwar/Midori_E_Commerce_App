@@ -1,9 +1,15 @@
 import { useDataLayer } from "../../context";
 import { Footer, VerticalCard, NavBar } from "../../components";
 import { EmptyBasket } from "../../asset";
+import { useEffect } from "react";
 
 const MyWishlist = () => {
   const { state } = useDataLayer();
+
+  useEffect(() => {
+    document.title = "Midori | MyWishlist";
+  }, []);
+
   return (
     <>
       <NavBar />

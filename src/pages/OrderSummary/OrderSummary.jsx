@@ -2,12 +2,16 @@ import { CartPrice, AddressModal, Footer, NavBar } from "../../components";
 import { useAddressManagement } from "../../context";
 import { Link } from "react-router-dom";
 import { EmptyBasket } from "../../asset";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const OrderSummary = () => {
   const { addressState, showAddressForm, setShowAddressForm } =
     useAddressManagement();
   const [checked, setChecked] = useState(true);
+
+  useEffect(() => {
+    document.title = "Midori | ordersummary";
+  }, []);
 
   return (
     <>
