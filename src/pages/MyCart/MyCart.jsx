@@ -1,13 +1,16 @@
-import { Footer, CartPrice, CartCard } from "../../components";
+import { Footer, CartPrice, CartCard, NavBar } from "../../components";
 import { useDataLayer } from "../../context";
-import "./MyCart.css";
 import { Link } from "react-router-dom";
 import { EmptyBasket } from "../../asset";
 
 const MyCart = () => {
   const { state } = useDataLayer();
   return (
-    <div>
+    <>
+      <NavBar />
+      {state.cartData.length > 0 && (
+        <h3 className="h3 center-text wishlist-page-heading">My Cart</h3>
+      )}
       <div className="mycart-container">
         {state.cartData.length > 0 ? (
           <>
@@ -39,7 +42,8 @@ const MyCart = () => {
           </div>
         )}
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

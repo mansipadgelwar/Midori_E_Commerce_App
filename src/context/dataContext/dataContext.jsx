@@ -25,8 +25,15 @@ const initialCategoryState = [
   { id: "Flowering", checked: false, label: "Flowering" },
 ];
 
+const initialDataState = {
+  productData: [],
+  wishlistData: [],
+  cartData: [],
+  filteredData: [],
+};
+
 const DataLayerProvider = ({ children }) => {
-  const { authToken } = useAuth();
+  const { authToken, isAuthorized } = useAuth();
   const { showToast } = useToast();
   const [searchTerm, setSearchTerm] = useState(" ");
   const [category, setCategory] = useState(initialCategoryState);
@@ -48,6 +55,8 @@ const DataLayerProvider = ({ children }) => {
         return { ...state, cartData: [...action.payload] };
       case "SET_FILTERED_DATA":
         return { ...state, filteredData: [...action.payload] };
+      case "RESET_DATA":
+        return initialDataState;
       default:
         return state;
     }
@@ -62,16 +71,18 @@ const DataLayerProvider = ({ children }) => {
   };
 
   const getWishlistedItems = async () => {
-    try {
-      let {
-        data: { wishlist },
-      } = await getAllItemsOfWishlist(authToken);
-      dispatch({
-        type: "GET_WISHLIST_DATA",
-        payload: wishlist,
-      });
-    } catch (error) {
-      console.error("get wishlist item error", error);
+    if (isAuthorized) {
+      try {
+        let {
+          data: { wishlist },
+        } = await getAllItemsOfWishlist(authToken);
+        dispatch({
+          type: "GET_WISHLIST_DATA",
+          payload: wishlist,
+        });
+      } catch (error) {
+        console.error("get wishlist item error", error);
+      }
     }
   };
 
@@ -91,66 +102,66 @@ const DataLayerProvider = ({ children }) => {
 
   const addToWishlist = async (event, product) => {
     event.preventDefault();
-    event.stopPropagation();
-    const isInWishlist =
-      state.wishlistData.find((element) => element._id === product._id) ===
-      undefined
-        ? false
-        : true;
-    try {
-      let {
-        data: { wishlist },
-      } = isInWishlist
-        ? await removeProductFromWishlist(authToken, product._id)
-        : await addProductToWishlist(authToken, product);
-      dispatch({
-        type: "GET_WISHLIST_DATA",
-        payload: wishlist,
-      });
-      showToast(
-        isInWishlist
-          ? "Product removed from wishlist"
-          : "Product added to wishlist",
-        "success"
-      );
-    } catch (error) {
-      showToast("Wishlist error", "error");
+    if (!isAuthorized) {
+      showToast("Please login to add product to wishlist", "info");
+    } else {
+      const isInWishlist =
+        state.wishlistData.find((element) => element._id === product._id) ===
+        undefined
+          ? false
+          : true;
+      try {
+        let {
+          data: { wishlist },
+        } = isInWishlist
+          ? await removeProductFromWishlist(authToken, product._id)
+          : await addProductToWishlist(authToken, product);
+        dispatch({
+          type: "GET_WISHLIST_DATA",
+          payload: wishlist,
+        });
+        showToast(
+          isInWishlist
+            ? "Product removed from wishlist"
+            : "Product added to wishlist",
+          "success"
+        );
+      } catch (error) {
+        showToast("Wishlist error", "error");
+      }
     }
   };
 
   const handleAddToCart = async (event, product) => {
     event.preventDefault();
-    event.stopPropagation();
-    const isInCart =
-      state.cartData.find((element) => element._id === product._id) ===
-      undefined
-        ? false
-        : true;
-    try {
-      let {
-        data: { cart },
-      } = isInCart
-        ? await removeItemFromCart(authToken, product._id)
-        : await addNewItemTocart(authToken, product);
-      dispatch({
-        type: "GET_CART_DATA",
-        payload: cart,
-      });
-      showToast(!isInCart && "Product added to cart", "success");
-    } catch (error) {
-      showToast("Cart error", "error");
+    if (!isAuthorized) {
+      showToast("Please login to add product to wishlist", "info");
+    } else {
+      const isInCart =
+        state.cartData.find((element) => element._id === product._id) ===
+        undefined
+          ? false
+          : true;
+      try {
+        let {
+          data: { cart },
+        } = isInCart
+          ? await removeItemFromCart(authToken, product._id)
+          : await addNewItemTocart(authToken, product);
+        dispatch({
+          type: "GET_CART_DATA",
+          payload: cart,
+        });
+        showToast(!isInCart && "Product added to cart", "success");
+      } catch (error) {
+        showToast("Cart error", "error");
+      }
     }
   };
 
-  const [state, dispatch] = useReducer(storeDataReducer, {
-    productData: [],
-    wishlistData: [],
-    cartData: [],
-    filteredData: [],
-  });
+  const [state, dispatch] = useReducer(storeDataReducer, initialDataState);
 
   useEffect(() => {
-    getListOfProducts();
     getWishlistedItems();
   }, []);
 
@@ -173,6 +184,8 @@ const DataLayerProvider = ({ children }) => {
         setRating,
         handlChangeChecked,
         initialCategoryState,
+        initialDataState,
+        getListOfProducts,
       }}
     >
       {children}

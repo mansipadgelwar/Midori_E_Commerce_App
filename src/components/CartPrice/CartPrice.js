@@ -2,7 +2,7 @@ import "./CartPrice.css";
 import { useDataLayer } from "../../context";
 import { useNavigate } from "react-router-dom";
 
-const CartPrice = () => {
+const CartPrice = (props) => {
   const { state, handleAddToCart } = useDataLayer();
   const currentLocation = useNavigate();
 
@@ -21,8 +21,12 @@ const CartPrice = () => {
 
   const handlePlaceOrder = (event) => {
     event.preventDefault();
-    state.cartData.map((item) => handleAddToCart(event, item));
-    currentLocation("/checkout");
+    if (location.pathname === "/mycart") {
+      currentLocation("/ordersummary");
+    } else {
+      state.cartData.map((item) => handleAddToCart(event, item));
+      currentLocation("/checkout");
+    }
   };
 
   return (

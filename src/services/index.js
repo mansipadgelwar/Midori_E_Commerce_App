@@ -18,3 +18,8 @@ export {
   addNewItemTocart,
   removeItemFromCart,
 } from "./cartServices/cartServices.jsx";
+export {
+  postAddressService,
+  getAddressService,
+  deleteAddressService,
+} from "./addressServices/addressServices.jsx";

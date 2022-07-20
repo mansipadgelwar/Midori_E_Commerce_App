@@ -44,7 +44,7 @@ const NavBar = () => {
               <NavLink className="btn-link" to="/mycart">
                 <div className="badge">
                   <span className="material-icons">shopping_cart</span>
-                  {state.cartData.length > 0 ? (
+                  {state.cartData && state.cartData.length > 0 ? (
                     <span className="badge-icon notification">
                       {state.cartData.length}
                     </span>
@@ -58,7 +58,7 @@ const NavBar = () => {
               <NavLink className="btn-link" to="/mywishlist">
                 <div className="badge">
                   <span className="material-icons">favorite_border</span>
-                  {state.wishlistData.length > 0 ? (
+                  {state.wishlistData && state.wishlistData.length > 0 ? (
                     <span className="badge-icon notification">
                       {state.wishlistData.length}
                     </span>

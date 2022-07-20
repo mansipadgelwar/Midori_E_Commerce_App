@@ -39,8 +39,6 @@
   color: var(--primary-color);
 }
 
-/* .profile-page-content .btn .btn-cta {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
+.btn-nav-link {
+  text-decoration: none;
+}
