@@ -4,7 +4,7 @@
 Midori is one stop shop for all your garden needs.
 
 
-![Logo](https://i.postimg.cc/Kjy2L2WM/component.png)
+![Logo](https://i.postimg.cc/zfnTsZfR/Untitled-design.png)
 
 
 ## Run Locally
