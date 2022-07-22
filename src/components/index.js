@@ -7,3 +7,4 @@ export { CartPrice } from "./CartPrice/CartPrice";
 export { ProductFilterModal } from "./Modal/ProductFilterModal.jsx";
 export { AddressModal } from "./Modal/AddressModal/AddressModal.jsx";
 export { Loader } from "./Loader/Loader";
+export { RequiresAuth } from "./RequiresAuth/RequiresAuth";

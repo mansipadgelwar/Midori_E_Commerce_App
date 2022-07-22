@@ -13,6 +13,7 @@ import {
   OrderSummary,
   NotFound,
 } from "./pages";
+import { RequiresAuth } from "./components";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -21,14 +22,42 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/productlisting" element={<ProductListing />} />
-        <Route path="/mywishlist" element={<MyWishlist />} />
-        <Route path="/mycart" element={<MyCart />} />
+        <Route
+          path="/mywishlist"
+          element={
+            <RequiresAuth>
+              <MyWishlist />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/mycart"
+          element={
+            <RequiresAuth>
+              <MyCart />
+            </RequiresAuth>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/address" element={<Address />} />
+        <Route
+          path="/profile"
+          element={
+            <RequiresAuth>
+              <Profile />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/address"
+          element={
+            <RequiresAuth>
+              <Address />
+            </RequiresAuth>
+          }
+        />
         <Route path="/ordersummary" element={<OrderSummary />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
