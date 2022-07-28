@@ -34,44 +34,43 @@ const Address = () => {
             </button>
           </div>
         </div>
-        {addressState.address &&
-          addressState.address.map((element) => {
-            return (
-              <div className="address-container" key={element._id}>
-                <div className="notes-container">
-                  <div className="notes-title-container">
-                    <div className="h4 text-bold">{element.name}</div>
-                    <div>
-                      <span
-                        className="material-icons"
-                        onClick={() => handleDeleteAdddress(element._id)}
-                      >
-                        delete
-                      </span>
-                    </div>
+        {addressState.address.map((element) => {
+          return (
+            <div className="address-container" key={element._id}>
+              <div className="notes-container">
+                <div className="notes-title-container">
+                  <div className="h4 text-bold">{element.name}</div>
+                  <div>
+                    <span
+                      className="material-icons"
+                      onClick={() => handleDeleteAdddress(element._id)}
+                    >
+                      delete
+                    </span>
                   </div>
-                  <div className="notes-body" />
-                  <div class="notes-label-container">
-                    {element.address}, {element.pincode}
-                    {element.tag && (
-                      <div className="notes-label-type text-bold h5">
-                        {element.tag}
-                      </div>
-                    )}
+                </div>
+                <div className="notes-body" />
+                <div class="notes-label-container">
+                  {element.address}, {element.pincode}
+                  {element.tag && (
+                    <div className="notes-label-type text-bold h5">
+                      {element.tag}
+                    </div>
+                  )}
+                </div>
+                <div className="notes-menu">
+                  <div className="notes-creation-date">
+                    <span className="text-bold"> City: </span>
+                    {element.locality}
                   </div>
-                  <div className="notes-menu">
-                    <div className="notes-creation-date">
-                      <span className="text-bold"> City: </span>
-                      {element.locality}
-                    </div>
-                    <div className="priority-tab">
-                      <span className="text-bold">State:</span> {element.state}
-                    </div>
+                  <div className="priority-tab">
+                    <span className="text-bold">State:</span> {element.state}
                   </div>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          );
+        })}
       </div>
     </>
   );

@@ -2,17 +2,6 @@ import { useEffect } from "react";
 import "../ProductFilter/ProductFilter.css";
 import { useDataLayer } from "../../context";
 
-const sortByPriceDB = [
-  { id: 1, label: "Low to High" },
-  { id: 2, label: "High to Low" },
-];
-
-const filterByRatingsDB = [
-  { id: 4, label: "4 Stars & above" },
-  { id: 3, label: "3 Stars & above" },
-  { id: 2, label: "2 Stars & above" },
-  { id: 1, label: "1 Stars & above" },
-];
 const ProductFilterModal = ({ show, onClose }) => {
   const {
     state,
@@ -28,11 +17,14 @@ const ProductFilterModal = ({ show, onClose }) => {
     handlChangeChecked,
     setCategory,
     initialCategoryState,
+    handlRadioChangeChecked,
+    filterByRatingsDB,
+    sortByPriceDB,
   } = useDataLayer();
 
   const handleClearFilter = () => {
-    setRating();
-    setSortType();
+    setRating(filterByRatingsDB);
+    setSortType(sortByPriceDB);
     setRangePrice(1000);
     setCategory(initialCategoryState);
   };
@@ -59,9 +51,13 @@ const ProductFilterModal = ({ show, onClose }) => {
         );
       }
 
+      const checkedRating = rating.find((item) => item.checked);
+
       //filter by rating
-      if (rating) {
-        filteredData = filteredData?.filter((item) => item.rating >= rating);
+      if (checkedRating) {
+        filteredData = filteredData?.filter(
+          (item) => item.rating >= Number(checkedRating.id)
+        );
       }
 
       //filter by search
@@ -72,11 +68,18 @@ const ProductFilterModal = ({ show, onClose }) => {
             -1
         );
       }
+
+      const checkedSortingType = sortType.find((item) => item.checked);
+
       //sort by price
-      filteredData =
-        sortType === 2
-          ? filteredData.sort((a, b) => b.discountedPrice - a.discountedPrice)
-          : filteredData.sort((a, b) => a.discountedPrice - b.discountedPrice);
+      if (checkedSortingType) {
+        filteredData =
+          checkedSortingType.id === 2
+            ? filteredData.sort((a, b) => b.discountedPrice - a.discountedPrice)
+            : filteredData.sort(
+                (a, b) => a.discountedPrice - b.discountedPrice
+              );
+      }
 
       dispatch({ type: "SET_FILTERED_DATA", payload: filteredData });
     };
@@ -143,7 +146,7 @@ const ProductFilterModal = ({ show, onClose }) => {
           </div>
           <div>
             <h3>Rating</h3>
-            {filterByRatingsDB.map((item) => {
+            {rating.map((item) => {
               return (
                 <div className="checkbox-container" key={item.id}>
                   <input
@@ -151,8 +154,9 @@ const ProductFilterModal = ({ show, onClose }) => {
                     type="radio"
                     name="star"
                     id={item.id}
-                    onChange={() => setRating(item.id)}
-                    value={rating}
+                    onChange={() => handlRadioChangeChecked(item.id)}
+                    value={item.id}
+                    checked={item.checked}
                   />
                   <label htmlFor={item.id} className="checkbox-detail">
                     {item.label}
@@ -163,7 +167,7 @@ const ProductFilterModal = ({ show, onClose }) => {
           </div>
           <div>
             <h3>Sort by</h3>
-            {sortByPriceDB.map((item) => {
+            {sortType.map((item) => {
               return (
                 <div className="checkbox-container" key={item.id}>
                   <input
@@ -171,8 +175,9 @@ const ProductFilterModal = ({ show, onClose }) => {
                     type="radio"
                     name="price"
                     id={item.id}
-                    onChange={() => setSortType(item.id)}
-                    value={sortType}
+                    onChange={() => handleSortRadioChangeChecked(item.id)}
+                    value={item.id}
+                    checked={item.checked}
                   />
                   <label htmlFor="low-to-high" className="checkbox-detail">
                     Price - {item.label}

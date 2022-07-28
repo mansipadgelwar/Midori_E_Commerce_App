@@ -25,6 +25,18 @@ const initialCategoryState = [
   { id: "Flowering", checked: false, label: "Flowering" },
 ];
 
+const filterByRatingsDB = [
+  { id: 4, label: "4 Stars & above", checked: false },
+  { id: 3, label: "3 Stars & above", checked: false },
+  { id: 2, label: "2 Stars & above", checked: false },
+  { id: 1, label: "1 Stars & above", checked: false },
+];
+
+const sortByPriceDB = [
+  { id: 1, label: "Low to High", checked: false },
+  { id: 2, label: "High to Low", checked: false },
+];
+
 const initialDataState = {
   productData: [],
   wishlistData: [],
@@ -38,8 +50,8 @@ const DataLayerProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState(" ");
   const [category, setCategory] = useState(initialCategoryState);
   const [rangePrice, setRangePrice] = useState(1000);
-  const [rating, setRating] = useState();
-  const [sortType, setSortType] = useState();
+  const [rating, setRating] = useState(filterByRatingsDB);
+  const [sortType, setSortType] = useState(sortByPriceDB);
 
   const storeDataReducer = (state, action) => {
     switch (action.type) {
@@ -68,6 +80,23 @@ const DataLayerProvider = ({ children }) => {
       item.id === id ? { ...item, checked: !item.checked } : item
     );
     setCategory(changeCheckedCategory);
+  };
+
+  const handlRadioChangeChecked = (id) => {
+    const ratingStateList = filterByRatingsDB;
+    const changeCheckedrating = ratingStateList.map((item) =>
+      item.id === id ? { ...item, checked: true } : item
+    );
+
+    setRating(changeCheckedrating);
+  };
+
+  const handleSortRadioChangeChecked = (id) => {
+    const sortingStateList = sortByPriceDB;
+    const changeCheckedsorting = sortingStateList.map((item) =>
+      item.id === id ? { ...item, checked: true } : item
+    );
+    setSortType(changeCheckedsorting);
   };
 
   const getWishlistedItems = async () => {
@@ -186,6 +215,10 @@ const DataLayerProvider = ({ children }) => {
         initialCategoryState,
         initialDataState,
         getListOfProducts,
+        filterByRatingsDB,
+        handlRadioChangeChecked,
+        handleSortRadioChangeChecked,
+        sortByPriceDB,
       }}
     >
       {children}
