@@ -20,6 +20,7 @@
   position: sticky;
   overflow-y: auto;
   top: 0;
+  left: 0;
   background-color: var(--white);
   text-align: left;
   height: calc(100vh - 2rem);

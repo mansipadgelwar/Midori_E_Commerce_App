@@ -25,8 +25,7 @@ const AddressModal = ({ showAddressForm, onClosingAddressForm }) => {
   }
 
   const handleAddressFormDetails = () => {
-    addNewAddress(addressFormDetails);
-    onClosingAddressForm();
+    addNewAddress(addressFormDetails, onClosingAddressForm);
   };
 
   return (

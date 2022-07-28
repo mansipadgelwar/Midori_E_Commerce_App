@@ -50,7 +50,7 @@ const Address = () => {
                   </div>
                 </div>
                 <div className="notes-body" />
-                <div class="notes-label-container">
+                <div className="notes-label-container">
                   {element.address}, {element.pincode}
                   {element.tag && (
                     <div className="notes-label-type text-bold h5">

@@ -52,19 +52,33 @@ const AddressManagementProvider = ({ children }) => {
     }
   };
 
-  const addNewAddress = async (addressDetails) => {
-    try {
-      const {
-        data: { address },
-      } = await postAddressService(authToken, addressDetails);
-      addressDispatch({
-        type: "SET_ADDRESS",
-        payload: { address: address },
-      });
-      showToast("New address added", "success");
-    } catch (err) {
-      showToast("Error in adding new address", "error");
-      console.error("error in adding new address", err);
+  const addNewAddress = async (addressDetails, onClosingAddressForm) => {
+    if (
+      !(
+        addressDetails.name &&
+        addressDetails.mobile &&
+        addressDetails.pincode &&
+        addressDetails.state &&
+        addressDetails.address &&
+        addressDetails.locality
+      )
+    ) {
+      showToast("All fields are mandatory", "warning");
+    } else {
+      try {
+        const {
+          data: { address },
+        } = await postAddressService(authToken, addressDetails);
+        addressDispatch({
+          type: "SET_ADDRESS",
+          payload: { address: address },
+        });
+        showToast("New address added", "success");
+        onClosingAddressForm();
+      } catch (err) {
+        showToast("Error in adding new address", "error");
+        console.error("error in adding new address", err);
+      }
     }
   };
 
@@ -86,7 +100,7 @@ const AddressManagementProvider = ({ children }) => {
 
   useEffect(() => {
     getAddress();
-  }, []);
+  });
 
   return (
     <AddressManagementContext.Provider
