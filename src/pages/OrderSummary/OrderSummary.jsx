@@ -71,7 +71,7 @@ const OrderSummary = () => {
                   className="btn btn-primary-outline btn-icon"
                   onClick={() => setShowAddressForm(true)}
                 >
-                  <span class="material-icons">add</span>ADD NEW ADDRESS
+                  <span className="material-icons">add</span>ADD NEW ADDRESS
                 </button>
               </div>
             </div>
