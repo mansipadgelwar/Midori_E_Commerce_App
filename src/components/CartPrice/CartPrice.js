@@ -54,13 +54,13 @@ const CartPrice = () => {
       name: "Midori",
       description: "Thank you for shopping with us",
       image:
-        "https://github.com/mansipadgelwar/Midori_E_Commerce_App/blob/dev/src/asset/logo.jpg",
+        "https://github.com/mansipadgelwar/Midori_E_Commerce_App/blob/dev/src/asset/logo.jpg?raw=true",
       handler: function (response) {
         state.cartData.map((item) => handleAddToCart(event, item));
         currentLocation("/checkout");
       },
       theme: {
-        color: "#007bb5",
+        color: "#29852f",
       },
     };
     const paymentObject = new window.Razorpay(options);
