@@ -1,10 +1,12 @@
 import "./CartPrice.css";
 import { useDataLayer } from "../../context";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "../../custom-hooks/useToast";
 
-const CartPrice = (props) => {
+const CartPrice = () => {
   const { state, handleAddToCart } = useDataLayer();
   const currentLocation = useNavigate();
+  const { showToast } = useToast();
 
   const result = state.cartData.reduce(
     (acc, product) => {
@@ -19,13 +21,58 @@ const CartPrice = (props) => {
 
   const deliveryCharges = 50 * Number(state.cartData.length);
 
+  const loadScript = async (url) => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = url;
+
+      script.onload = () => {
+        resolve(true);
+      };
+
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  };
+
+  const displayRazorpay = async (event) => {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+
+    if (!res) {
+      showToast("Razorpay SDK failed to load!!", "error");
+      return;
+    }
+
+    const options = {
+      key: "rzp_test_h4nqMDPxVYcZ6s",
+      amount: (result.discountedPrice + deliveryCharges) * 100,
+      currency: "INR",
+      name: "Midori",
+      description: "Thank you for shopping with us",
+      image:
+        "https://github.com/mansipadgelwar/Midori_E_Commerce_App/blob/dev/src/asset/logo.jpg",
+      handler: function (response) {
+        state.cartData.map((item) => handleAddToCart(event, item));
+        currentLocation("/checkout");
+      },
+      theme: {
+        color: "#007bb5",
+      },
+    };
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
+
   const handlePlaceOrder = (event) => {
     event.preventDefault();
     if (location.pathname === "/mycart") {
       currentLocation("/ordersummary");
     } else {
-      state.cartData.map((item) => handleAddToCart(event, item));
-      currentLocation("/checkout");
+      displayRazorpay(event);
     }
   };
 
