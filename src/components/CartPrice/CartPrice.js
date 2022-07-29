@@ -1,10 +1,12 @@
 import "./CartPrice.css";
 import { useDataLayer } from "../../context";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "../../custom-hooks/useToast";
 
 const CartPrice = () => {
   const { state, handleAddToCart } = useDataLayer();
   const currentLocation = useNavigate();
+  const { showToast } = useToast();
 
   const result = state.cartData.reduce(
     (acc, product) => {
