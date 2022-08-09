@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
             authUser: data.foundUser,
           },
         });
-        localStorage.setItem("token", data.encodedToken);
+        localStorage.setItem("token", JSON.stringify(data.encodedToken));
         localStorage.setItem("user", JSON.stringify(data.foundUser));
         navigate(location.state?.from?.pathname || "/", { replace: true });
       }
